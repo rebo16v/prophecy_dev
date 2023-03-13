@@ -14,7 +14,7 @@ async function montecarlo_start() {
       var prophecy = context.workbook.worksheets.getItem("prophecy");
       range_in = prophecy.getRange("A" + 2 + ":E" + (1+randoms.length));
       range_in.load("values");
-      range_out = prophecy.getRange("I" + 2 + ":K" + (1+forecasts.length));
+      range_out = prophecy.getRange("G" + 2 + ":I" + (1+forecasts.length));
       range_out.load("values");
       await context.sync();
       let confs_in = range_in.values;
