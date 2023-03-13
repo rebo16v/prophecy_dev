@@ -12,7 +12,7 @@ async function montecarlo_start() {
       montecarlo_running = true;
       let app = context.workbook.application;
       var prophecy = context.workbook.worksheets.getItem("prophecy");
-      range_in = prophecy.getRange("A" + 2 + ":G" + (1+randoms.length));
+      range_in = prophecy.getRange("A" + 2 + ":E" + (1+randoms.length));
       range_in.load("values");
       range_out = prophecy.getRange("I" + 2 + ":K" + (1+forecasts.length));
       range_out.load("values");
@@ -22,6 +22,9 @@ async function montecarlo_start() {
       montecarlo_win = [];
       let niter = parseInt(document.getElementById("niter").value);
       let nbins = parseInt(document.getElementById("nbins").value);
+      confs_in.forEach((c,i) => {
+        c[5] = JSON.parse(c[4])
+      });
       confs_out.forEach((c,i) => {
         montecarlo_win[i] = window.open("montecarlo.html?id=" + i + "&name=" + c[0] + "&nbins=" + nbins, "forecast_"+i);
       });
@@ -57,16 +60,16 @@ function montecarlo_in(confs, context) {
     let input = 0;
     switch (conf[3]) {
       case "uniform":
-        input = sampleUniform(conf[4], conf[5]);
+        input = sampleUniform(conf[5].min, conf[5].max);
         break;
       case "normal":
-        input = sampleNormal(conf[4], conf[5]);
+        input = sampleNormal(conf[5].mean, conf[5].stdev);
         break;
       case "triangular":
-        input = sampleTriangular(conf[4], conf[5], conf[6]);
+        input = sampleTriangular(conf[5].min, conf[5].max, conf[5].mode);
         break;
       case "binomial":
-        input = sampleBinomial(conf[4]);
+        input = sampleBinomial(conf[5].yes);
         break;
     }
     let [s, c] = conf[1].split("!");
