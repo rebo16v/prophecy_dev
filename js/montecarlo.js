@@ -71,6 +71,14 @@ function montecarlo_in(confs, context) {
       case "binomial":
         input = sampleBinomial(conf[5].yes);
         break;
+      case "discrete":
+        alert("discrete")
+        input = sampleUniform(conf[5].min, conf[5].max);
+        break;
+      case "complex":
+        alert("complex")
+        input = sampleUniform(conf[5].min, conf[5].max);
+        break;
     }
     let [s, c] = conf[1].split("!");
     let sheet = context.workbook.worksheets.getItem(s);

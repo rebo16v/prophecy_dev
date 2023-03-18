@@ -114,7 +114,7 @@ async function radioChange(event) {
             prophecy.getCell(row, 3).dataValidation.rule = {
                   list: {
                     inCellDropDown: true,
-                    source: "uniform,normal,triangular,binomial"
+                    source: "uniform,normal,triangular,binomial,discrete,custom"
                   }
                 };
           }
