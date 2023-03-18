@@ -28,7 +28,7 @@ async function montecarlo_start() {
         c[5] = JSON.parse(c[4])
       });
       confs_in
-        .filter(c => c[3] == "discrete")
+        .filter(c => (c[3] == "discrete") || (c[3] == "custom"))
         .forEach((c,i) => {
           c[6] = c[5].map(p => p.prob).map(cumulativeSum);
         });
@@ -82,7 +82,7 @@ function montecarlo_in(confs, context) {
         input = sampleDiscrete(conf[5], conf[6]);
         break;
       case "complex":
-        input = sampleUniform(conf[5].min, conf[5].max);
+        input = sampleCustom(conf[5], conf[6]);
         break;
     }
     let [s, c] = conf[1].split("!");

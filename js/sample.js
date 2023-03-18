@@ -29,8 +29,18 @@ function sampleBin(prob) {
 function sampleDiscrete(conf, cums) {
   const u = Math.random();
   let idx = cums.findIndex(c => c>=u);
+  // console.log(u);
+  // console.log(cums);
+  // console.log(idx + " => " + conf[idx].val);
+  return conf[idx].val;
+}
+
+function sampleDiscrete(conf, cums) {
+  const u = Math.random();
+  let idx = cums.findIndex(c => c>=u);
   console.log(u);
   console.log(cums);
-  console.log(idx + " => " + conf[idx].val);
-  return conf[idx].val;
+  console.log(idx + " => " + conf[idx].min + "," + conf[idx].max);
+  const u2 = Math.random();
+  return conf[idx].min + (u2 * (conf[idx].max-conf[idx].min));
 }
