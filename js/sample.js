@@ -26,8 +26,6 @@ function sampleBin(prob) {
   else return 1;
 }
 
-const cumulativeSum = (sum => value => sum += value)(0);
-
 function sampleDiscrete(conf, cums) {
   const u = Math.random();
   let idx = cums.findIndex(c => c>=u);
