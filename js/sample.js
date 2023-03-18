@@ -32,6 +32,7 @@ function sampleDiscrete(conf) {
   const u = Math.random();
   let probs = conf.map(c => c.prob).map(cumulativeSum);
   let idx = probs.findIndex(c => c>=u);
+  console.log(u + " => " + probs);
   console.log(idx + " => " + conf[idx].val);
   return conf[idx].val;
 }
