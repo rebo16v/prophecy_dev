@@ -28,13 +28,11 @@ function sampleBin(prob) {
 
 const cumulativeSum = (sum => value => sum += value)(0);
 
-function sampleDiscrete(conf) {
+function sampleDiscrete(conf, cums) {
   const u = Math.random();
-  let probs = conf.map(c => c.prob)
-  let cums = probs.map(cumulativeSum);
   let idx = cums.findIndex(c => c>=u);
   console.log(u);
-  console.log(probs + " => " + cums);
+  console.log(cums);
   console.log(idx + " => " + conf[idx].val);
   return conf[idx].val;
 }

@@ -2,6 +2,8 @@ let montecarlo_win;
 let montecarlo_running = false;
 let montecarlo_paused = false;
 
+const cumulativeSum = (sum => value => sum += value)(0);
+
 async function montecarlo_start() {
   await Excel.run(async(context) => {
     document.getElementById("play").disabled = true;
@@ -25,6 +27,11 @@ async function montecarlo_start() {
       confs_in.forEach((c,i) => {
         c[5] = JSON.parse(c[4])
       });
+      confs_in
+        .filter(c => conf[3] == "discrete")
+        .forEach((c,i) => {
+          c[6] = c[5].map(p => p.prob).map(cumulativeSum);
+        });
       confs_out.forEach((c,i) => {
         montecarlo_win[i] = window.open("montecarlo.html?id=" + i + "&name=" + c[0] + "&nbins=" + nbins, "forecast_"+i);
       });
@@ -72,7 +79,7 @@ function montecarlo_in(confs, context) {
         input = sampleBinomial(conf[5].yes);
         break;
       case "discrete":
-        input = sampleDiscrete(conf[5]);
+        input = sampleDiscrete(conf[5], conf[6]);
         break;
       case "complex":
         input = sampleUniform(conf[5].min, conf[5].max);
