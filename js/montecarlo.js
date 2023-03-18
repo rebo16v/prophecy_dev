@@ -72,7 +72,7 @@ function montecarlo_in(confs, context) {
         input = sampleBinomial(conf[5].yes);
         break;
       case "discrete":
-        input = sampleUniform(conf[5].min, conf[5].max);
+        input = sampleDiscrete(conf[5]);
         break;
       case "complex":
         input = sampleUniform(conf[5].min, conf[5].max);

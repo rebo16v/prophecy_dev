@@ -25,3 +25,12 @@ function sampleBin(prob) {
   if (u<=(1-prob)) return 0;
   else return 1;
 }
+
+const cumulativeSum = (sum => value => sum += value)(0);
+
+function sampleDiscrete(conf) {
+  const u = Math.random();
+  let probs = conf.map(c => c.prob).map(cumulativeSum);
+  let idx = probs.findIndex(c => c>=u);
+  return conf[idx].val;
+}
