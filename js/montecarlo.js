@@ -28,7 +28,7 @@ async function montecarlo_start() {
         c[5] = JSON.parse(c[4])
       });
       confs_in
-        .filter(c => conf[3] == "discrete")
+        .filter(c => c[3] == "discrete")
         .forEach((c,i) => {
           c[6] = c[5].map(p => p.prob).map(cumulativeSum);
         });
