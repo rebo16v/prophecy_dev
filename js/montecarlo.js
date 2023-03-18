@@ -81,7 +81,7 @@ function montecarlo_in(confs, context) {
       case "discrete":
         input = sampleDiscrete(conf[5], conf[6]);
         break;
-      case "complex":
+      case "custom":
         input = sampleCustom(conf[5], conf[6]);
         break;
     }
