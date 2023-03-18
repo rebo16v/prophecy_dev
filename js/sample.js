@@ -35,7 +35,7 @@ function sampleDiscrete(conf, cums) {
   return conf[idx].val;
 }
 
-function sampleDiscrete(conf, cums) {
+function sampleCustom(conf, cums) {
   const u = Math.random();
   let idx = cums.findIndex(c => c>=u);
   console.log(u);
