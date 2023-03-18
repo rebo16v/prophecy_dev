@@ -45,7 +45,7 @@ Office.onReady((info) => {
               else {
                 let prophecy = context.workbook.worksheets.add("prophecy")
                 range1 = prophecy.getRange("A1:E1");
-                range1.values = [["name", "cell", "value", "distribution", "parameters", "", ""]];
+                range1.values = [["name", "cell", "value", "distribution", "parameters"]];
                 range1.format.borders.getItem('InsideHorizontal').style = 'Continuous';
                 range1.format.borders.getItem('InsideVertical').style = 'Continuous';
                 range1.format.borders.getItem('EdgeBottom').style = 'Continuous';
@@ -53,6 +53,7 @@ Office.onReady((info) => {
                 range1.format.borders.getItem('EdgeRight').style = 'Continuous';
                 range1.format.borders.getItem('EdgeTop').style = 'Continuous';
                 range1.format.fill.color = "yellow";
+                prophecy.Cells(,1).EntireColumn.ColumnWidth = 25;
                 range2 = prophecy.getRange("G1:I1");
                 range2.values = [["name", "cell", "value"]];
                 range2.format.borders.getItem('InsideHorizontal').style = 'Continuous';
@@ -62,7 +63,6 @@ Office.onReady((info) => {
                 range2.format.borders.getItem('EdgeRight').style = 'Continuous';
                 range2.format.borders.getItem('EdgeTop').style = 'Continuous';
                 range2.format.fill.color = "red"
-                prophecy.getRange("E1:G1").merge();
                 return context.sync();
               }
           });
