@@ -41,6 +41,7 @@ Office.onReady((info) => {
                     }
                   });
                 });
+                prophecy.onChanged.add(combo);
               }
               else {
                 let prophecy = context.workbook.worksheets.add("prophecy")
@@ -63,6 +64,7 @@ Office.onReady((info) => {
                 range2.format.borders.getItem('EdgeRight').style = 'Continuous';
                 range2.format.borders.getItem('EdgeTop').style = 'Continuous';
                 range2.format.fill.color = "red"
+                prophecy.onChanged.add(combo);
                 return context.sync();
               }
           });
@@ -177,4 +179,13 @@ async function config(event) {
       }
     });
   });
+}
+
+async function combo(event) {
+    await Excel.run(async (context) => {
+        await context.sync();
+        console.log("Change type of event: " + event.changeType);
+        console.log("Address of event: " + event.address);
+        console.log("Source of event: " + event.source);
+    }).catch(errorHandlerFunction);
 }
