@@ -41,7 +41,7 @@ Office.onReady((info) => {
                     }
                   });
                   console.log("hola");
-                  let table = prophecy.tables.add("D1:D1100", true);
+                  let table = prophecy.tables.add("D1:D1100", false);
                   table.name = "distros";
                   return context.sync().then(function(){
                     console.log("que tal?");
