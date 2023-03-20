@@ -41,10 +41,13 @@ Office.onReady((info) => {
                     }
                   });
                 });
-                let distros = prophecy.tables.add("D1:D1100", true);
-                distros.name = "distros";
-                let distros2 = context.workbook.bindings.add(distros.getRange(), "distro", "distro2");
-                distros2.onDataChanged.add(onDistroChanged);
+                console.log("hola"):
+                let table = prophecy.tables.add("D1:D1100", true);
+                table.name = "distros";
+                return context.sync().then(function(){
+                  let distros = context.workbook.bindings.add(table.getRange(), "distro", "distro2");
+                  distros.onDataChanged.add(onDistroChanged);
+                }
               }
               else {
                 let prophecy = context.workbook.worksheets.add("prophecy")
@@ -67,8 +70,8 @@ Office.onReady((info) => {
                 range2.format.borders.getItem('EdgeRight').style = 'Continuous';
                 range2.format.borders.getItem('EdgeTop').style = 'Continuous';
                 range2.format.fill.color = "red"
-                const distros = context.workbook.bindings.add(prophecy.getRange("D1:D100"), "distro", "distro2");
-                distros.onDataChanged.add(onDistroChanged);
+                // const distros = context.workbook.bindings.add(prophecy.getRange("D1:D100"), "distro", "distro2");
+                // distros.onDataChanged.add(onDistroChanged);
                 return context.sync();
               }
           });
