@@ -47,7 +47,7 @@ Office.onReady((info) => {
                 return context.sync().then(function(){
                   let distros = context.workbook.bindings.add(table.getRange(), "distro", "distro2");
                   distros.onDataChanged.add(onDistroChanged);
-                }
+                });
               }
               else {
                 let prophecy = context.workbook.worksheets.add("prophecy")
