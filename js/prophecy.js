@@ -41,7 +41,8 @@ Office.onReady((info) => {
                     }
                   });
                 });
-                prophecy.onChanged.add(combo);
+                const distros = context.workbook.bindings.add(prophecy.getRange("D1:D100"), "distro", "distro2");
+                distros.onDataChanged.add(onDistroChanged);
               }
               else {
                 let prophecy = context.workbook.worksheets.add("prophecy")
@@ -64,7 +65,8 @@ Office.onReady((info) => {
                 range2.format.borders.getItem('EdgeRight').style = 'Continuous';
                 range2.format.borders.getItem('EdgeTop').style = 'Continuous';
                 range2.format.fill.color = "red"
-                prophecy.onChanged.add(combo);
+                const distros = context.workbook.bindings.add(prophecy.getRange("D1:D100"), "distro", "distro2");
+                distros.onDataChanged.add(onDistroChanged);
                 return context.sync();
               }
           });
@@ -181,11 +183,15 @@ async function config(event) {
   });
 }
 
-async function combo(event) {
-    await Excel.run(async (context) => {
-        await context.sync();
-        console.log("Change type of event: " + event.changeType);
-        console.log("Address of event: " + event.address);
-        console.log("Source of event: " + event.source);
-    }).catch(errorHandlerFunction);
+async function onDistroChanged(eventArgs: Excel.BindingDataChangedEventArgs) {
+  await Excel.run(async (context) => {
+    console.log("Data was changed with binding " + eventArgs.binding.id);
+
+    // Get the name of the table that's changed.
+    const table: Excel.Table = context.workbook.bindings.getItem(eventArgs.binding.id).getTable();
+    table.load("name");
+
+    await context.sync();
+    console.log("Name of the changed table: " + table.name);
+  });
 }
