@@ -48,7 +48,7 @@ Office.onReady((info) => {
                     let distros = context.workbook.bindings.add(table.getRange(), "distro", "distro2");
                     distros.onDataChanged.add(onDistroChanged);
                     console.log("adios");
-                    return context.sync();
+                    // return context.sync();
                   });
                 });
               }
