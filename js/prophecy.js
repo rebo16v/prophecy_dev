@@ -40,16 +40,6 @@ Office.onReady((info) => {
                       forecasts.push(conf[1]);
                     }
                   });
-                  console.log("hola");
-                  let table = prophecy.tables.add("D1:D1100", false);
-                  table.name = "distros";
-                  return context.sync().then(function(){
-                    console.log("que tal?");
-                    let distros = context.workbook.bindings.add(table.getRange(), "distro", "distro2");
-                    distros.onDataChanged.add(onDistroChanged);
-                    console.log("adios");
-                    // return context.sync();
-                  });
                 });
               }
               else {
@@ -188,18 +178,5 @@ async function config(event) {
         }
       }
     });
-  });
-}
-
-async function onDistroChanged(eventArgs) {
-  await Excel.run(async (context) => {
-    console.log("Data was changed with binding " + eventArgs.binding.id);
-
-    // Get the name of the table that's changed.
-    const table = context.workbook.bindings.getItem(eventArgs.binding.id).getTable();
-    table.load("name");
-
-    await context.sync();
-    console.log("Name of the changed table: " + table.name);
   });
 }
