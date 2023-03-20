@@ -40,16 +40,16 @@ Office.onReady((info) => {
                       forecasts.push(conf[1]);
                     }
                   });
-                });
-                console.log("hola");
-                let table = prophecy.tables.add("D1:D1100", true);
-                table.name = "distros";
-                return context.sync().then(function(){
-                  console.log("que tal?");
-                  let distros = context.workbook.bindings.add(table.getRange(), "distro", "distro2");
-                  distros.onDataChanged.add(onDistroChanged);
-                  console.log("adios");
-                  return context.sync();
+                  console.log("hola");
+                  let table = prophecy.tables.add("D1:D1100", true);
+                  table.name = "distros";
+                  return context.sync().then(function(){
+                    console.log("que tal?");
+                    let distros = context.workbook.bindings.add(table.getRange(), "distro", "distro2");
+                    distros.onDataChanged.add(onDistroChanged);
+                    console.log("adios");
+                    return context.sync();
+                  });
                 });
               }
               else {
