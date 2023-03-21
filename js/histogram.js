@@ -2,6 +2,7 @@ let x, y;
 let n_bins;
 let sims = [];
 let domain = [0,0];
+let max_prob = 1;
 
 let summa = 0;
 let mean = 0;
@@ -31,7 +32,7 @@ window.addEventListener("load", (e) => {
     svg.append("g").attr("transform", `translate(0,${height - margin.bottom})`),
     svg.append("g").attr("transform", `translate(${margin.left},0)`)];
   y = d3.scaleLinear()
-       .domain([0, 1])
+       .domain([0, max_prob])
        .range([height - margin.bottom, margin.top]);
   axis[1].call(d3.axisLeft(y));
   h_lines = [1,2,3,4,5,6,7,8,9].map(c => {
@@ -107,11 +108,18 @@ function message(e) {
   }
 }
 
-function repaint() {
-  let bins = d3.histogram()
+function histogram(vals) {
+  let hist = d3.histogram()
       .domain(x.domain())
       .thresholds(x.ticks(nbins))
       (sims);
+  let prob = Math.max(hist.map(b => b.length)) / sims.length;
+  y.domain([0, .1 * Math.ceil(a/0.1)]);
+  return bins;
+}
+
+function repaint() {
+  let bins = histogram(sims);
   svg.selectAll("rect")
       .data(bins)
       .join(
