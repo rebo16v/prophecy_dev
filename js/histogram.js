@@ -95,6 +95,7 @@ function message(e) {
         return q.append("tspan")
           .attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
           .attr("y", 2*(i+2)*margin.top);
+        });
     q_texts = q_labels.map((q,i) => {
         return svg.append("text")
           .text("Q" + (i+1))
