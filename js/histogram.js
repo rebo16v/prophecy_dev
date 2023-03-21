@@ -57,18 +57,18 @@ function message(e) {
     let value = parseFloat(json.value);
     iter_text.text("iter " + iter).attr("x", width-margin.right).attr("y", 2*margin.top);
     if (sims.length == 0) {
-      domain = [value - (value/4), value + (value/4)];
+      domain = [value - (value/10), value + (value/10)];
       x = d3.scaleLinear()
           .domain(domain)
           .range([margin.left, width - margin.right]);
       axis[0].call(d3.axisBottom(x));
     } else if (value <= domain[0]) {
       console.log("se va por la izquierda.")
-      domain[0] = value - (value/4);
+      domain[0] = value - (value/10);
       x.domain(domain);
     } else if (value >= domain[1]) {
       console.log("se va por la derecha.")
-      domain[1] = value + (value/4);
+      domain[1] = value + (value/10);
       x.domain(domain);
     }
     sims.push(value);
