@@ -108,18 +108,18 @@ function message(e) {
   }
 }
 
-function histogram(vals) {
+function histogram(vals, n) {
   let hist = d3.histogram()
       .domain(x.domain())
-      .thresholds(x.ticks(nbins))
-      (sims);
-  let prob = Math.max(hist.map(b => b.length)) / sims.length;
+      .thresholds(x.ticks(n))
+      (vals);
+  let prob = Math.max(hist.map(b => b.length)) / vals.length;
   y.domain([0, .1 * Math.ceil(prob/0.1)]);
   return hist;
 }
 
 function repaint() {
-  let bins = histogram(sims);
+  let bins = histogram(sims, nbins);
   svg.selectAll("rect")
       .data(bins)
       .join(
