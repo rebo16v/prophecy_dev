@@ -102,7 +102,7 @@ function message(e) {
           .attr("x", x(qs[i])-2)
           .attr("dy", 20);
         });
-    q_vals = qs.map((q,i) => {
+    q_vals = q_labels.map((q,i) => {
         return q.append("tspan")
           .text(qs[i])
           .attr("x", x(qs[i])-2)
