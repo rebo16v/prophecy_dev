@@ -115,7 +115,7 @@ function histogram(vals) {
       (sims);
   let prob = Math.max(hist.map(b => b.length)) / sims.length;
   y.domain([0, .1 * Math.ceil(prob/0.1)]);
-  return bins;
+  return hist;
 }
 
 function repaint() {
