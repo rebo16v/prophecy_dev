@@ -13,7 +13,7 @@ let width, height;
 let svg, axis;
 let name_text, iter_text, mean_line, mean_text;
 let stats = false;
-let qs, q_lines, q_texts, q_vals;
+let qs, q_lines, q_labels, q_texts, q_vals;
 let mouse = false;
 let m_line, m_text;
 let h_lines;
@@ -91,7 +91,7 @@ function message(e) {
           .attr("y", 2*(i+2)*margin.top);
       });
     */
-    let q_lables = qlabels.map((q,i) => {
+    q_lables = qlabels.map((q,i) => {
         return q.append("tspan")
           .attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
           .attr("y", 2*(i+2)*margin.top);
