@@ -125,23 +125,12 @@ function message(e) {
   }
 }
 
-function histogram(vals, n) {
-  console.log("histogram => " + vals.length)
-  let hist = d3.histogram()
-      .domain(x.domain())
-      .thresholds(x.ticks(n))
-      (vals);
-  let prob = Math.max(hist.map(b => b.length)) / vals.length;
-  y.domain([0, .1 * Math.ceil(prob/0.1)]);
-  return hist;
-}
-
 function repaint() {
   let bins = d3.histogram()
       .domain(x.domain())
       .thresholds(x.ticks(nbins))
       (sims);
-  let prob = Math.max(bins.map(b => b.length)) / sims.length;
+  let prob = Math.max.apply(Math, bins.map(b => b.length)) / sims.length;
   console.log("prob => " + prob);
   y.domain([0, .1 * Math.ceil(prob/0.1)]);
   axis[1].call(d3.axisLeft(y));
