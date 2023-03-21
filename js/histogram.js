@@ -91,13 +91,13 @@ function message(e) {
         return q.append("tspan")
           .text("Q" + (i+1))
           .attr("x", x(qs[i])-2)
-          .attr("dy", 20);
+          .attr("dy", 15);
         });
     q_texts2 = q_texts.map((q,i) => {
         return q.append("tspan")
           .text(qs[i])
           .attr("x", x(qs[i])-2)
-          .attr("dy", 20);
+          .attr("dy", 15);
         });
     q_lines = qs.map(q => x(q))
       .map((q,i) => {
@@ -109,9 +109,9 @@ function message(e) {
     m_text = svg.append("text")
       .attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue");
     m_text1 = m_text.append("tspan")
-      .attr("dy", 20);
+      .attr("dy", 15);
     m_text2 = m_text.append("tspan")
-      .attr("dy", 20);
+      .attr("dy", 15);
     m_line = svg.append("line")
         .attr("stroke", "blue");
     mean_line.remove();
@@ -188,7 +188,7 @@ function resize() {
   if (stats) {
     qs.map(q => x(q))
       .forEach((q,i) => {
-        q_texts[i].attr("y", (i+2)*margin.top)
+        q_texts[i].attr("y", (i+2)*margin.top);
         q_texts1[i].attr("x", q-2);
         q_texts2[i].attr("x", q-2);
         q_lines[i].attr("x1", q).attr("x2", q).attr("y1", y(1)).attr("y2", y(0));
