@@ -106,7 +106,7 @@ function message(e) {
         return svg.append("line")
           .attr("stroke", "blue")
           .attr("stroke-dasharray", "5 5")
-          .attr("x1", q).attr("x2", q).attr("y1", y(1)).attr("y2", y(0));
+          .attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
     m_text = svg.append("text")
       .attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue");
@@ -152,20 +152,20 @@ function repaint() {
               .attr("x", function(d) {return x(d.x0)})
               .attr("y", function(d) {return y(d.length/sims.length)})
               .attr("width", function(d) {return x(d.x1) - x(d.x0) - 2})
-              .attr("height", function(d) {return y(0) - y(d.length/sims.length)})
+              .attr("height", function(d) {return margin.top - y(d.length/sims.length)})
               .style("fill", "green"),
           update => update
               .attr("x", function(d) {return x(d.x0)})
               .attr("y", function(d) {return y(d.length/sims.length)})
               .attr("width", function(d) {return x(d.x1) - x(d.x0) - 2})
-              .attr("height", function(d) {return y(0) - y(d.length/sims.length)}));
+              .attr("height", function(d) {return margin.top - y(d.length/sims.length)}));
   if (!stats) {
     let mean_x = x(mean)
     mean_line
       .attr("x1", mean_x)
       .attr("x2", mean_x)
-      .attr("y1", y(1))
-      .attr("y2", y(0));
+      .attr("y1", height-margin.bottom)
+      .attr("y2", margin.top);
     mean_text
       .text("mean=" + mean)
       .attr("x", mean_x-2)
@@ -196,7 +196,7 @@ function resize() {
         q_texts[i].attr("y", (i+2)*margin.top);
         q_texts1[i].attr("x", q-2);
         q_texts2[i].attr("x", q-2);
-        q_lines[i].attr("x1", q).attr("x2", q).attr("y1", y(1)).attr("y2", y(0));
+        q_lines[i].attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
   }
   repaint();
@@ -214,7 +214,7 @@ function mousemove(e) {
     m_text.attr("y", margin.top).attr("visibility", "visible");
     m_text1.text("Q=" + q + "%").attr("x", coord-2).attr("visibility", "visible");
     m_text2.text(value).attr("x", coord-2).attr("visibility", "visible");
-    m_line.attr("x1", coord).attr("x2", coord).attr("y1", y(1)).attr("y2", y(0)).attr("visibility", "visible");
+    m_line.attr("x1", coord).attr("x2", coord).attr("y1", height-margin.bottom).attr("y2", margin.top).attr("visibility", "visible");
   } else {
     m_text.attr("visibility", "hidden");
     m_text1.attr("visibility", "hidden");
