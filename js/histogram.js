@@ -83,7 +83,7 @@ function message(e) {
   } else {
     sims = sims.sort();
     let l = sims.length;
-    let qs = [sims[Math.round(l/4)], sims[Math.round(l/2)], sims[Math.round(3*l/4)]];
+    qs = [sims[Math.round(l/4)], sims[Math.round(l/2)], sims[Math.round(3*l/4)]];
     q_texts = qs.map((q,i) => {
         return svg.append("text")
           .attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
