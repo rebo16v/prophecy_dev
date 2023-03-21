@@ -100,11 +100,13 @@ function message(e) {
           .text("Q" + (i+1))
           .attr("x", x(qs[i])-2)
           .attr("dy", 20);
+        });
     q_vals = qs.map((q,i) => {
         return svg.append("text")
           .text(qs[i])
           .attr("x", x(qs[i])-2)
           .attr("dy", 20);
+        });
     q_lines = qs.map(q => x(q))
       .map((q,i) => {
         return svg.append("line")
