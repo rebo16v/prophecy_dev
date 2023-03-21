@@ -190,7 +190,9 @@ function resize() {
   if (stats) {
     qs.map(q => x(q))
       .forEach((q,i) => {
-        q_texts[i].attr("x", q-2).attr("y", (i+2)*margin.top);
+        q_labels[i].attr("y", (i+2)*margin.top)
+        q_texts[i].attr("x", q-2);
+        q_vals[i].attr("x", q-2);
         q_lines[i].attr("x1", q).attr("x2", q).attr("y1", y(1)).attr("y2", y(0));
       });
   }
