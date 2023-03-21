@@ -91,19 +91,19 @@ function message(e) {
           .attr("y", 2*(i+2)*margin.top);
       });
     */
-    q_lables = qlabels.map((q,i) => {
-        return q.append("tspan")
+    q_lables = qs.map((q,i) => {
+        return svg.append("text")
           .attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
           .attr("y", 2*(i+2)*margin.top);
         });
     q_texts = q_labels.map((q,i) => {
-        return svg.append("text")
+        return q.append("tspan")
           .text("Q" + (i+1))
           .attr("x", x(qs[i])-2)
           .attr("dy", 20);
         });
     q_vals = qs.map((q,i) => {
-        return svg.append("text")
+        return q.append("tspan")
           .text(qs[i])
           .attr("x", x(qs[i])-2)
           .attr("dy", 20);
