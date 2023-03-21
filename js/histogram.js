@@ -13,7 +13,7 @@ let width, height;
 let svg, axis;
 let name_text, iter_text, mean_line, mean_text;
 let stats = false;
-let qs, q_lines, q_labels, q_texts, q_vals;
+let qs, q_lines, q_texts, q_texts1, q_texts2;
 let mouse = false;
 let m_line, m_text;
 let h_lines;
@@ -82,27 +82,18 @@ function message(e) {
     sims = sims.sort();
     let l = sims.length;
     let qs = [sims[Math.round(l/4)], sims[Math.round(l/2)], sims[Math.round(3*l/4)]];
-    /*
     q_texts = qs.map((q,i) => {
-        return svg.append("text")
-          .attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-          .text("Q" + (i+1) + "=" + q)
-          .attr("x", x(q)-2)
-          .attr("y", 2*(i+2)*margin.top);
-      });
-    */
-    q_labels = qs.map((q,i) => {
         return svg.append("text")
           .attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
           .attr("y", 2*(i+2)*margin.top);
         });
-    q_texts = q_labels.map((q,i) => {
+    q_texts1 = q_texts.map((q,i) => {
         return q.append("tspan")
           .text("Q" + (i+1))
           .attr("x", x(qs[i])-2)
           .attr("dy", 20);
         });
-    q_vals = q_labels.map((q,i) => {
+    q_texts2 = q_texts.map((q,i) => {
         return q.append("tspan")
           .text(qs[i])
           .attr("x", x(qs[i])-2)
@@ -117,6 +108,10 @@ function message(e) {
       });
     m_text = svg.append("text")
       .attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue");
+    m_text1 = m_text.append("tspan")
+      .attr("dy", 20);
+    m_text2 = m_text.append("tspan")
+      .attr("dy", 20);
     m_line = svg.append("line")
         .attr("stroke", "blue");
     mean_line.remove();
@@ -193,9 +188,9 @@ function resize() {
   if (stats) {
     qs.map(q => x(q))
       .forEach((q,i) => {
-        q_labels[i].attr("y", (i+2)*margin.top)
-        q_texts[i].attr("x", q-2);
-        q_vals[i].attr("x", q-2);
+        q_texts[i].attr("y", (i+2)*margin.top)
+        q_texts1[i].attr("x", q-2);
+        q_texts2[i].attr("x", q-2);
         q_lines[i].attr("x1", q).attr("x2", q).attr("y1", y(1)).attr("y2", y(0));
       });
   }
@@ -211,10 +206,14 @@ function mousemove(e) {
     if (idx>=0) {q = Math.round(100 * (idx / sims.length));}
     else {q = 100;}
 
-    m_text.text("Q=" + q + "%").attr("x", coord-2).attr("y", margin.top).attr("visibility", "visible");
+    m_text.attr("y", margin.top).attr("visibility", "visible");
+    m_text1.text("Q=" + q + "%").attr("x", coord-2).attr("visibility", "visible");
+    m_text2.text(value).attr("x", coord-2).attr("visibility", "visible");
     m_line.attr("x1", coord).attr("x2", coord).attr("y1", y(1)).attr("y2", y(0)).attr("visibility", "visible");
   } else {
     m_text.attr("visibility", "hidden");
+    m_text1.attr("visibility", "hidden");
+    m_text2.attr("visibility", "hidden");
     m_line.attr("visibility", "hidden");
   }
 }
