@@ -120,7 +120,10 @@ function histogram(vals, n) {
 }
 
 function repaint() {
-  let bins = histogram(sims, nbins);
+  let bins = d3.histogram()
+      .domain(x.domain())
+      .thresholds(x.ticks(nbins))
+      (sims);
   svg.selectAll("rect")
       .data(bins)
       .join(
