@@ -91,7 +91,7 @@ function message(e) {
           .attr("y", 2*(i+2)*margin.top);
       });
     */
-    q_lables = qs.map((q,i) => {
+    q_labels = qs.map((q,i) => {
         return svg.append("text")
           .attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
           .attr("y", 2*(i+2)*margin.top);
