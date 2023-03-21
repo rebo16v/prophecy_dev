@@ -1,6 +1,7 @@
 let x, y;
 let n_bins;
 let sims = [];
+let domain = [0,0];
 
 let summa = 0;
 let mean = 0;
@@ -56,8 +57,9 @@ function message(e) {
     let value = parseFloat(json.value);
     iter_text.text("iter " + iter).attr("x", width-margin.right).attr("y", 2*margin.top);
     if (sims.length == 0) {
+      domain = [value - (value/2), value + (value/2)];
       x = d3.scaleLinear()
-          .domain([0,2*value])
+          .domain(domain)
           .range([margin.left, width - margin.right]);
       axis[0].call(d3.axisBottom(x));
     }

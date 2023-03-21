@@ -63,8 +63,6 @@ Office.onReady((info) => {
                 range2.format.borders.getItem('EdgeRight').style = 'Continuous';
                 range2.format.borders.getItem('EdgeTop').style = 'Continuous';
                 range2.format.fill.color = "red"
-                // const distros = context.workbook.bindings.add(prophecy.getRange("D1:D100"), "distro", "distro2");
-                // distros.onDataChanged.add(onDistroChanged);
                 return context.sync();
               }
           });
