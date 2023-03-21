@@ -132,7 +132,7 @@ function repaint() {
       (sims);
   let prob = Math.max.apply(Math, bins.map(b => b.length)) / sims.length;
   console.log("prob => " + prob);
-  y.domain([0, .1 * Math.ceil(prob/0.1)]);
+  y.domain([0, Math.min(1, .1 * (1+Math.ceil(prob/0.1))]);
   axis[1].call(d3.axisLeft(y));
   svg.selectAll("rect")
       .data(bins)
