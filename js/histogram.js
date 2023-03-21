@@ -64,11 +64,13 @@ function message(e) {
       axis[0].call(d3.axisBottom(x));
     } else if (value <= domain[0]) {
       console.log("se va por la izquierda.")
-      domain[0] = value - (value/10);
+      if (value>0) domain[0] = value - (value/10);
+      else domain[0] = value + (value/10);
       x.domain(domain);
     } else if (value >= domain[1]) {
       console.log("se va por la derecha.")
-      domain[1] = value + (value/10);
+      if (value>0) domain[1] = value + (value/10);
+      else domain[1] = value - (value/10);
       x.domain(domain);
     }
     sims.push(value);
