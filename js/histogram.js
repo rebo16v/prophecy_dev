@@ -109,6 +109,7 @@ function message(e) {
 }
 
 function histogram(vals, n) {
+  console.log("histogram => " + vals.length)
   let hist = d3.histogram()
       .domain(x.domain())
       .thresholds(x.ticks(n))
