@@ -59,7 +59,7 @@ function message(e) {
     let value = parseFloat(json.value);
     iter_text.text("iter " + iter).attr("x", width-margin.right).attr("y", 2*margin.top);
     if (sims.length == 0) {
-      href = Math.abs(value/10);
+      href = Math.abs(value/20);
       domain = [value - href, value + href];
       x = d3.scaleLinear()
           .domain(domain)
@@ -67,15 +67,11 @@ function message(e) {
       axis[0].call(d3.axisBottom(x));
     } else if (value <= domain[0]) {
       console.log("se va por la izquierda.")
-      //if (value>0) domain[0] = value - href;
-      //else domain[0] = value + href;
       domain[0] = value - href;
       x.domain(domain);
       axis[0].call(d3.axisBottom(x));
     } else if (value >= domain[1]) {
       console.log("se va por la derecha.")
-      //if (value>0) domain[1] = value + href;
-      //else domain[1] = value - href;
       domain[1] = value + href;
       x.domain(domain);
       axis[0].call(d3.axisBottom(x));
@@ -85,10 +81,6 @@ function message(e) {
     mean = summa / sims.length;
     repaint();
   } else {
-    let prob = Math.max.apply(Math, bins.map(b => b.length)) / sims.length;
-    max_prob = .01 * (Math.ceil(prob/0.01));
-    y.domain([0, max_prob]);
-    axis[1].call(d3.axisLeft(y));
     sims = sims.sort();
     let l = sims.length;
     qs = [sims[Math.round(l/4)], sims[Math.round(l/2)], sims[Math.round(3*l/4)]];
@@ -138,6 +130,12 @@ function repaint() {
       .domain(x.domain())
       .thresholds(x.ticks(nbins))
       (sims);
+  let prob = .01 * Math.ceil(Math.max.apply(Math, bins.map(b => b.length))/(.01*sims.length));
+  if (prob != max_prob) {
+    max_prob = prob;
+    y.domain([0, max_prob]);
+    axis[1].call(d3.axisLeft(y));
+  }
   svg.selectAll("rect")
       .data(bins)
       .join(
