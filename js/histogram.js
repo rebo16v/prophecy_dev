@@ -76,7 +76,7 @@ function message(e) {
       console.log("se va por la derecha.")
       //if (value>0) domain[1] = value + href;
       //else domain[1] = value - href;
-      domain[0] = value + href;
+      domain[1] = value + href;
       x.domain(domain);
       axis[0].call(d3.axisBottom(x));
     }
