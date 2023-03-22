@@ -130,7 +130,7 @@ function repaint() {
       .domain(x.domain())
       .thresholds(x.ticks(nbins))
       (sims);
-  let prob = .01 * Math.ceil(Math.max.apply(Math, bins.map(b => b.length))/(.01*sims.length));
+  let prob = .1 * Math.ceil(Math.max.apply(Math, bins.map(b => b.length))/(.1*sims.length));
   if (prob != max_prob) {
     max_prob = prob;
     y.domain([0, max_prob]);
