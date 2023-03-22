@@ -27,7 +27,7 @@ Office.onReady((info) => {
                     if (conf[1] != "") {
                       let [s, c] = conf[1].split("!");
                       let sheet = context.workbook.worksheets.getItem(s);
-                      sheet.getRange(c).format.fill.color = "yellow";
+                      sheet.getRange(c).format.fill.color = "red";
                       randoms.push(conf[1]);
                     }
                   });
@@ -36,7 +36,7 @@ Office.onReady((info) => {
                     if (conf[1] != "") {
                       let [s, c] = conf[1].split("!");
                       let sheet = context.workbook.worksheets.getItem(s);
-                      sheet.getRange(c).format.fill.color = "red";
+                      sheet.getRange(c).format.fill.color = "green";
                       forecasts.push(conf[1]);
                     }
                   });
@@ -52,7 +52,7 @@ Office.onReady((info) => {
                 range1.format.borders.getItem('EdgeLeft').style = 'Continuous';
                 range1.format.borders.getItem('EdgeRight').style = 'Continuous';
                 range1.format.borders.getItem('EdgeTop').style = 'Continuous';
-                range1.format.fill.color = "yellow";
+                range1.format.fill.color = "red";
                 prophecy.getRange("E:E").format.ColumnWidth = 25;
                 range2 = prophecy.getRange("G1:I1");
                 range2.values = [["name", "cell", "value"]];
@@ -62,7 +62,7 @@ Office.onReady((info) => {
                 range2.format.borders.getItem('EdgeLeft').style = 'Continuous';
                 range2.format.borders.getItem('EdgeRight').style = 'Continuous';
                 range2.format.borders.getItem('EdgeTop').style = 'Continuous';
-                range2.format.fill.color = "red"
+                range2.format.fill.color = "green"
                 return context.sync();
               }
           });
@@ -123,7 +123,7 @@ async function radioChange(event) {
             let range = prophecy.getRange("I" + (2+idx2) + ":K" + (2+idx2));
             range.delete(Excel.DeleteShiftDirection.up);
           }
-          cell.format.fill.color = "yellow"
+          cell.format.fill.color = "red"
       } else if (document.getElementById('output').checked) {
           if (idx != -1) {
             randoms.splice(idx, 1);
@@ -141,7 +141,7 @@ async function radioChange(event) {
                 }
             prophecy.getCell(row, 8).values = cell.values
           }
-          cell.format.fill.color = "red"
+          cell.format.fill.color = "green"
       } else {
           if (idx != -1) {
             randoms.splice(idx, 1);
