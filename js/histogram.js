@@ -142,13 +142,13 @@ function repaint() {
               .attr("x", function(d) {return x(d.x0)})
               .attr("y", function(d) {return y(d.length/sims.length)})
               .attr("width", function(d) {return x(d.x1) - x(d.x0) - 2})
-              .attr("height", function(d) {return margin.top - y(d.length/sims.length)})
+              .attr("height", function(d) {return height - margin.top - y(d.length/sims.length)})
               .style("fill", "green"),
           update => update
               .attr("x", function(d) {return x(d.x0)})
               .attr("y", function(d) {return y(d.length/sims.length)})
               .attr("width", function(d) {return x(d.x1) - x(d.x0) - 2})
-              .attr("height", function(d) {return margin.top - y(d.length/sims.length)}));
+              .attr("height", function(d) {return height - margin.top - y(d.length/sims.length)}));
   if (!stats) {
     let mean_x = x(mean)
     mean_line
