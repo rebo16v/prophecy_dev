@@ -85,6 +85,10 @@ function message(e) {
     mean = summa / sims.length;
     repaint();
   } else {
+    let prob = Math.max.apply(Math, bins.map(b => b.length)) / sims.length;
+    max_prob = .01 * (Math.ceil(prob/0.01));
+    y.domain([0, max_prob]);
+    axis[1].call(d3.axisLeft(y));
     sims = sims.sort();
     let l = sims.length;
     qs = [sims[Math.round(l/4)], sims[Math.round(l/2)], sims[Math.round(3*l/4)]];
@@ -134,15 +138,6 @@ function repaint() {
       .domain(x.domain())
       .thresholds(x.ticks(nbins))
       (sims);
-  let prob = Math.max.apply(Math, bins.map(b => b.length)) / sims.length;
-  let prob_limit = .1 * (Math.ceil(prob/0.1));
-  if (max_prob != prob_limit) {
-    console.log("prob => " + max_prob);
-    max_prob = prob_limit;
-    y.domain([0, max_prob]);
-    axis[1].call(d3.axisLeft(y));
-  }
-
   svg.selectAll("rect")
       .data(bins)
       .join(
