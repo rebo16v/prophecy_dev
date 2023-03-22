@@ -1,0 +1,13 @@
+body {
+  background-image: url('images/background.png');
+}
+h1 {
+  style="font-family:Verdana;
+  font-size:20px;
+  color:#FFFFFF"
+}
+label {
+  style="font-family:Verdana;
+  font-size:16px;
+  color:#FFFFFF"
+}
