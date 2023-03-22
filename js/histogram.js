@@ -59,7 +59,7 @@ function message(e) {
     let value = parseFloat(json.value);
     iter_text.text("iter " + iter).attr("x", width-margin.right).attr("y", 2*margin.top);
     if (sims.length == 0) {
-      href = value/10;
+      href = Math.abs(value/10);
       domain = [value - href, value + href];
       x = d3.scaleLinear()
           .domain(domain)
@@ -67,14 +67,16 @@ function message(e) {
       axis[0].call(d3.axisBottom(x));
     } else if (value <= domain[0]) {
       console.log("se va por la izquierda.")
-      if (value>0) domain[0] = value - href;
-      else domain[0] = value + href;
+      //if (value>0) domain[0] = value - href;
+      //else domain[0] = value + href;
+      domain[0] = value - href;
       x.domain(domain);
       axis[0].call(d3.axisBottom(x));
     } else if (value >= domain[1]) {
       console.log("se va por la derecha.")
-      if (value>0) domain[1] = value + href;
-      else domain[1] = value - href;
+      //if (value>0) domain[1] = value + href;
+      //else domain[1] = value - href;
+      domain[0] = value + href;
       x.domain(domain);
       axis[0].call(d3.axisBottom(x));
     }
@@ -181,7 +183,7 @@ function resize() {
   axis[1].attr("transform", `translate(${margin.left},0)`);
   axis[1].call(d3.axisLeft(y));
   h_lines.forEach((l,i) => {
-    let h = y(max_prob/10*(i+1)/10);
+    let h = y(max_prob*(i+1)/10);
     l.attr("x1", margin.left).attr("x2", width-margin.right)
     .attr("y1", h).attr("y2", h);
   });
