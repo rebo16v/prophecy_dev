@@ -3,7 +3,7 @@ let n_bins;
 let sims = [];
 let domain = [0,0];
 let max_prob = 1;
-let h_ref;
+let href;
 
 let summa = 0;
 let mean = 0;
