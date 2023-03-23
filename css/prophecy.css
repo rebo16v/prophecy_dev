@@ -27,6 +27,10 @@ button:hover {
   background-color: #FFFFFF;
   color: black;
 }
+button:disabled {
+  background-color: #666666;
+  color: #AAAAAA;
+}
 .config {
   background-color: #888888;
   border: none;
