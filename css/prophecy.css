@@ -12,7 +12,7 @@ label {
   color:#FFFFFF
 }
 button {
-  background-color: #999999;
+  background-color: #888888;
   border: none;
   color: white;
   width: 75px;
@@ -28,7 +28,7 @@ button:hover {
   color: black;
 }
 .config {
-  background-color: #999999;
+  background-color: #888888;
   border: none;
   color: white;
   width: 150px;
