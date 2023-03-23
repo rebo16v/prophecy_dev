@@ -20,7 +20,7 @@ function sampleTriangular(a, b, c) {
   }
 }
 
-function sampleBin(prob) {
+function sampleBinomial(prob) {
   const u = Math.random();
   if (u<=(1-prob)) return 0;
   else return 1;
@@ -29,18 +29,12 @@ function sampleBin(prob) {
 function sampleDiscrete(conf, cums) {
   const u = Math.random();
   let idx = cums.findIndex(c => c>=u);
-  // console.log(u);
-  // console.log(cums);
-  // console.log(idx + " => " + conf[idx].val);
   return conf[idx].val;
 }
 
 function sampleCustom(conf, cums) {
   const u = Math.random();
   let idx = cums.findIndex(c => c>=u);
-  console.log(u);
-  console.log(cums);
-  console.log(idx + " => " + conf[idx].min + "," + conf[idx].max);
   const u2 = Math.random();
   return conf[idx].min + (u2 * (conf[idx].max-conf[idx].min));
 }
