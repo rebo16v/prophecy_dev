@@ -18,7 +18,7 @@ button {
   background-color: #FFFFFF;
   border: none;
   color: #666666;
-  width: 75px;
+  width: 70px;
   height: 30px;
   text-align: center;
   text-decoration: none;
@@ -32,9 +32,9 @@ button:disabled {
   color: #CCCCCC;
 }
 .config {
-  background-color: #888888;
+  background-color: #FFFFFF;
   border: none;
-  color: white;
+  color: #666666;
   width: 150px;
   height: 30px;
   text-align: center;
@@ -43,8 +43,4 @@ button:disabled {
   font-size: 18px;
   cursor: pointer;
   margin-top:5px
-}
-.config:hover {
-  background-color: #FFFFFF;
-  color: black;
 }
