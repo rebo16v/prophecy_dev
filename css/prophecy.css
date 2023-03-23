@@ -1,6 +1,7 @@
 body {
   background-image: url('../images/background.png');
-   padding-left: 20px;
+   padding-left: 10px;
+   padding-right: 10px;
 }
 h1 {
   font-family:Verdana;
@@ -15,7 +16,7 @@ label {
 button {
   background-color: #AAAAAA;
   border: none;
-  color: white;
+  color: #FFFFFF;
   width: 75px;
   height: 30px;
   text-align: center;
@@ -29,7 +30,7 @@ button:hover {
   color: black;
 }
 button:disabled {
-  background-color: #888888;
+  background-color: #777777;
   color: #BBBBBB;
 }
 .config {
