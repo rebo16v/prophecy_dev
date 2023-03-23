@@ -14,9 +14,9 @@ label {
   color:#FFFFFF
 }
 button {
-  background-color: #AAAAAA;
+  background-color: #FFFFFF;
   border: none;
-  color: #FFFFFF;
+  color: #666666;
   width: 75px;
   height: 30px;
   text-align: center;
@@ -25,13 +25,9 @@ button {
   font-size: 18px;
   cursor: pointer;
 }
-button:hover {
-  background-color: #FFFFFF;
-  color: black;
-}
 button:disabled {
-  background-color: #777777;
-  color: #BBBBBB;
+  background-color: #666666;
+  color: #CCCCCC;
 }
 .config {
   background-color: #888888;
