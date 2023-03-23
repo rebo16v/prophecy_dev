@@ -12,12 +12,17 @@ label {
   color:#FFFFFF
 }
 button {
-  background-color: #AAAAAA;
+  background-color: #999999;
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 5px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #FFFFFF;
+  color: black;
 }
