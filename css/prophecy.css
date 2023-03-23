@@ -15,7 +15,8 @@ button {
   background-color: #999999;
   border: none;
   color: white;
-  padding: 5px 32px;
+  width: 80px;
+  height: 30px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
