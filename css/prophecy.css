@@ -2,6 +2,7 @@ body {
   background-image: url('../images/background.png');
    padding-left: 10px;
    padding-right: 10px;
+   line-height: 2
 }
 h1 {
   font-family:Verdana;
