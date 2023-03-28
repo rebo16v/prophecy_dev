@@ -33,7 +33,7 @@ window.addEventListener("load", (e) => {
     svg.append("g").attr("transform", `translate(0,${height - margin.bottom})`),
     svg.append("g").attr("transform", `translate(${margin.left},0)`)];
   y = d3.scaleLinear()
-       .domain([0, max_prob])
+       .domain([0, max_scale * max_step])
        .range([height - margin.bottom, margin.top]);
   axis[1].call(d3.axisLeft(y));
   h_lines = [1,2,3,4,5,6,7,8,9].map(c => {
@@ -146,7 +146,7 @@ function repaint() {
     if (prob >=  9) {
       max_scale *= 10;
       max_step = 1;
-    } else max_step += 1;    
+    } else max_step += 1;
     y.domain([0, max_scale * max_step]);
     axis[1].call(d3.axisLeft(y));
   }
