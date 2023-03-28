@@ -66,12 +66,10 @@ function message(e) {
           .range([margin.left, width - margin.right]);
       axis[0].call(d3.axisBottom(x));
     } else if (value <= domain[0]) {
-      console.log("se va por la izquierda.")
       domain[0] = value - href;
       x.domain(domain);
       axis[0].call(d3.axisBottom(x));
     } else if (value >= domain[1]) {
-      console.log("se va por la derecha.")
       domain[1] = value + href;
       x.domain(domain);
       axis[0].call(d3.axisBottom(x));
@@ -131,6 +129,7 @@ function repaint() {
       .thresholds(x.ticks(nbins))
       (sims);
   let step = Math.ceil(Math.max.apply(Math, bins.map(b => b.length)) / (max_scale * sims.length));
+  console.log("==========================================")
   console.log("max => (" + max_scale + "," + max_step + ")");
   console.log("step => "+ step);
   if (step < max_step) {
@@ -190,7 +189,7 @@ function resize() {
   axis[1].attr("transform", `translate(${margin.left},0)`);
   axis[1].call(d3.axisLeft(y));
   h_lines.forEach((l,i) => {
-    let h = y(max_prob*(i+1)/10);
+    let h = y(max_scale*max_step*(i+1)/10);
     l.attr("x1", margin.left).attr("x2", width-margin.right)
     .attr("y1", h).attr("y2", h);
   });
