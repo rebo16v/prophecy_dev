@@ -141,7 +141,7 @@ function repaint() {
     y.domain([0, max_scale * max_step]);
     axis[1].call(d3.axisLeft(y));
   } else if (step > max_step) {
-    console.log("prob menor");
+    console.log("prob mayor");
     if (step >=  10) {
       max_scale *= 10;
       max_step = 1;
