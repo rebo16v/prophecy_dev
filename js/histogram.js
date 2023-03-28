@@ -130,20 +130,20 @@ function repaint() {
       .domain(x.domain())
       .thresholds(x.ticks(nbins))
       (sims);
-  let prob = max_scale * Math.ceil(Math.max.apply(Math, bins.map(b => b.length)) / (max_scale * sims.length));
+  let step = Math.ceil(Math.max.apply(Math, bins.map(b => b.length)) / (max_scale * sims.length));
   console.log("max => (" + max_scale + "," + max_step + ")");
-  console.log("prob => "+ prob);
-  if (prob < max_step) {
+  console.log("step => "+ step);
+  if (step < max_step) {
     console.log("prob menor");
-    if (prob <=  1) {
+    if (step <=  1) {
       max_scale /= 10;
       max_step = 9;
     } else max_step -= 1;
     y.domain([0, max_scale * max_step]);
     axis[1].call(d3.axisLeft(y));
-  } else if (prob > max_step) {
+  } else if (step > max_step) {
     console.log("prob menor");
-    if (prob >=  9) {
+    if (step >=  10) {
       max_scale *= 10;
       max_step = 1;
     } else max_step += 1;
