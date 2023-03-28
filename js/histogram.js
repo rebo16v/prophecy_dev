@@ -2,7 +2,7 @@ let x, y;
 let n_bins;
 let sims = [];
 let domain = [0,0];
-let max_prob = 1;
+let max_scale = .1, max_step = 10;
 let href;
 
 let summa = 0;
@@ -130,10 +130,24 @@ function repaint() {
       .domain(x.domain())
       .thresholds(x.ticks(nbins))
       (sims);
-  let prob = .1 * Math.ceil(Math.max.apply(Math, bins.map(b => b.length))/(.1*sims.length));
-  if (prob != max_prob) {
-    max_prob = prob;
-    y.domain([0, max_prob]);
+  let prob = max_scale * Math.ceil(Math.max.apply(Math, bins.map(b => b.length)) / (max_scale * sims.length));
+  console.log("max => (" + max_scale + "," + max_step + ")");
+  console.log("prob => "+ prob);
+  if (prob < max_step) {
+    console.log("prob menor");
+    if (prob <=  1) {
+      max_scale /= 10;
+      max_step = 9;
+    } else max_step -= 1;
+    y.domain([0, max_scale * max_step]);
+    axis[1].call(d3.axisLeft(y));
+  } else if (prob > max_step) {
+    console.log("prob menor");
+    if (prob >=  9) {
+      max_scale *= 10;
+      max_step = 1;
+    } else max_step += 1;    
+    y.domain([0, max_scale * max_step]);
     axis[1].call(d3.axisLeft(y));
   }
   svg.selectAll("rect")
