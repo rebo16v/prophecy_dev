@@ -143,7 +143,7 @@ function repaint() {
     rescale(max_scale, max_step);
   } else if (step > max_step) {
     console.log("prob mayor");
-    if (step >=  10) {
+    if (step >  10) {
       max_scale *= 10;
       max_step = 1;
     } else max_step += 1;
@@ -223,10 +223,12 @@ function rescale(scale, step) {
                 .attr("stroke", "black")
                 .attr("stroke-dasharray", "2 5")
                 .attr("visibility", "visible")
-                .attr("x1", margin.left).attr("x2", width-margin.right)
+                .attr("x1", margin.left)
+                .attr("x2", width-margin.right)
                 .attr("y1", x => y(x))
                 .attr("y2", x => y(x)),
           update => update
+                .attr("visibility", "visible")
                 .attr("y1", x => y(x))
                 .attr("y2", x => y(x)),
           exit => exit
