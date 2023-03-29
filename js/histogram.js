@@ -218,7 +218,8 @@ function rescale(scale, step) {
       .data(y.ticks())
       .join(
           enter => enter
-              .append("").append("line")
+              .append("line")
+                .attr("class", "grid")
                 .attr("stroke", "black")
                 .attr("stroke-dasharray", "2 5")
                 .attr("visibility", "visible")
