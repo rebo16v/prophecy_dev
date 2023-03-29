@@ -8,7 +8,7 @@ let href;
 let summa = 0;
 let mean = 0;
 
-let margin = { top: 20, right: 20, bottom: 20, left: 30 }
+let margin = { top: 20, right: 20, bottom: 20, left: 40 }
 let width, height;
 
 let svg, axis;
@@ -138,16 +138,14 @@ function repaint() {
       max_scale /= 10;
       max_step = 10;
     } else max_step -= 1;
-    y.domain([0, max_scale * max_step]);
-    axis[1].call(d3.axisLeft(y));
-  } else if ((step == 10) || (step > max_step)) {
+    rescale(max_scale, max_step);
+  } else if (step > max_step) {
     console.log("prob mayor");
     if (step >=  10) {
       max_scale *= 10;
       max_step = 1;
     } else max_step += 1;
-    y.domain([0, max_scale * max_step]);
-    axis[1].call(d3.axisLeft(y));
+    rescale(max_scale, max_step);
   }
   svg.selectAll("rect")
       .data(bins)
@@ -205,6 +203,13 @@ function resize() {
       });
   }
   repaint();
+}
+
+function rescale(scale, step) {
+  y.domain([0, scale * step]);
+  axis[1].call(d3.axisLeft(y));
+  y.ticks().foreach(x => console.log("     tick => " + x))M;
+
 }
 
 function mousemove(e) {
