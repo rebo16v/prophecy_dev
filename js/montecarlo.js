@@ -75,7 +75,7 @@ function montecarlo_in(confs, context) {
       case "triangular":
         input = sampleTriangular(conf[5].min, conf[5].max, conf[5].mode);
         break;
-      case "binomial":
+      case "yes/no":
         input = sampleBinomial(conf[5].yes);
         break;
       case "discrete":
