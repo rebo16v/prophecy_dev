@@ -132,15 +132,15 @@ function repaint() {
   console.log("==========================================")
   console.log("max => (" + max_scale + "," + max_step + ")");
   console.log("step => "+ step);
-  if (step < max_step) {
+  if ((step == 1) || (step < max_step)) {
     console.log("prob menor");
     if (step <=  1) {
       max_scale /= 10;
-      max_step = 9;
+      max_step = 10;
     } else max_step -= 1;
     y.domain([0, max_scale * max_step]);
     axis[1].call(d3.axisLeft(y));
-  } else if (step > max_step) {
+  } else if ((step == 10) || (step > max_step)) {
     console.log("prob mayor");
     if (step >=  10) {
       max_scale *= 10;
