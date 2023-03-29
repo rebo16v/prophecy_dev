@@ -36,6 +36,7 @@ window.addEventListener("load", (e) => {
        .domain([0, max_scale * max_step])
        .range([height - margin.bottom, margin.top]);
   axis[1].call(d3.axisLeft(y));
+  /*
   h_lines = [1,2,3,4,5,6,7,8,9].map(c => {
     let h = y(c/10);
     return svg.append("line")
@@ -44,6 +45,7 @@ window.addEventListener("load", (e) => {
       .attr("x1", margin.left).attr("x2", width-margin.right)
       .attr("y1", h).attr("y2", h);
     });
+  */
   name_text = svg.append("text").attr("text-anchor", "end").attr("font-family", "Arial").attr("fill", "blue").text(params.get("name")).attr("x", width-margin.right).attr("y", margin.top);
   iter_text = svg.append("text").attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue").attr("x", width-margin.right).attr("y", 2*margin.top);
   mean_line = svg.append("line").attr("stroke", "blue");
@@ -186,11 +188,13 @@ function resize() {
   y.range([height - margin.bottom, margin.top]);
   axis[1].attr("transform", `translate(${margin.left},0)`);
   axis[1].call(d3.axisLeft(y));
+  /*
   h_lines.forEach((l,i) => {
     let h = y(max_scale*max_step*(i+1)/10);
     l.attr("x1", margin.left).attr("x2", width-margin.right)
     .attr("y1", h).attr("y2", h);
   });
+  */
   name_text.attr("x", width-margin.right).attr("y", margin.top);
   iter_text.attr("x", width-margin.right).attr("y", 2*margin.top);
   if (stats) {
@@ -209,6 +213,23 @@ function rescale(scale, step) {
   y.domain([0, scale * step]);
   axis[1].call(d3.axisLeft(y));
   console.log("ticks => " + y.ticks());
+
+  svg.selectAll(".grid")
+      .data(y.ticks())
+      .join(
+          enter => enter
+              .append("").append("line")
+                .attr("stroke", "black")
+                .attr("stroke-dasharray", "2 5")
+                .attr("visibility", "visible")
+                .attr("x1", margin.left).attr("x2", width-margin.right)
+                .attr("y1", x => y(x))
+                .attr("y2", x => y(x)),
+          update => update
+                .attr("y1", x => y(x))
+                .attr("y2", x => y(x)),
+          exit => exit
+              .attr("visibility", "hidden"));
 }
 
 function mousemove(e) {
