@@ -208,7 +208,7 @@ function resize() {
 function rescale(scale, step) {
   y.domain([0, scale * step]);
   axis[1].call(d3.axisLeft(y));
-  y.ticks().foreach(x => console.log("     tick => " + x));
+  axis[1].scale().ticks().foreach(x => console.log("     tick => " + x));
 
 }
 
