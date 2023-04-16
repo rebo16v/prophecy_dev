@@ -45,10 +45,10 @@ Office.onReady((info) => {
               else {
                 let prophecy = context.workbook.worksheets.add(sheet_name)
                 let table_in = prophecy.tables.add("A1:E1", true);
-                table_in.name = "ExpensesTable";
+                table_in.name = "randoms";
                 table_in.getHeaderRowRange().values = [["name", "cell", "value", "distribution", "parameters"]];
                 let table_out = prophecy.tables.add("G1:I1", true);
-                table_out.name = "ExpensesTable";
+                table_out.name = "forecasts";
                 table_out.getHeaderRowRange().values = [["name", "cell", "value"]];
                 /*
                 range1 = prophecy.getRange("A1:E1");
@@ -100,6 +100,8 @@ async function radioChange(event) {
     let sheet = context.workbook.worksheets.getActiveWorksheet();
     let cell = context.workbook.getActiveCell();
     let prophecy = context.workbook.worksheets.getItem(sheet_name);
+    let table_in = sheet.tables.getItem("randoms");
+    let table_out = sheet.tables.getItem("forecasts");
     cell.load("address");
     cell.load("values")
     cell.load("numberFormat")
@@ -110,6 +112,11 @@ async function radioChange(event) {
       if (document.getElementById('input').checked) {
           if (idx == -1) {
             randoms.push(address)
+            table_in.rows.add(null, [
+              ["input_" + row,  "", "", "", ""]
+            ]);
+
+            /*
             let row = randoms.length
             prophecy.getCell(row, 0).values = [["input_" + row]]
             prophecy.getCell(row, 1).hyperlink = {
@@ -125,6 +132,7 @@ async function radioChange(event) {
                     source: distributions
                   }
                 };
+            */
           }
           if (idx2 != -1) {
             forecasts.splice(idx2, 1);
