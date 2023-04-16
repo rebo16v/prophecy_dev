@@ -44,6 +44,13 @@ Office.onReady((info) => {
               }
               else {
                 let prophecy = context.workbook.worksheets.add(sheet_name)
+                let table_in = prophecy.tables.add("A1:E1", true);
+                table_in.name = "ExpensesTable";
+                table_in.getHeaderRowRange().values = [["name", "cell", "value", "distribution", "parameters"]];
+                let table_out = prophecy.tables.add("G1:I1", true);
+                table_out.name = "ExpensesTable";
+                table_out.getHeaderRowRange().values = [["name", "cell", "value"]];
+                /*
                 range1 = prophecy.getRange("A1:E1");
                 range1.values = [["name", "cell", "value", "distribution", "parameters"]];
                 range1.format.borders.getItem('InsideHorizontal').style = 'Continuous';
@@ -63,6 +70,7 @@ Office.onReady((info) => {
                 range2.format.borders.getItem('EdgeRight').style = 'Continuous';
                 range2.format.borders.getItem('EdgeTop').style = 'Continuous';
                 range2.format.fill.color = color_input
+                */
                 return context.sync();
               }
           });
