@@ -112,12 +112,12 @@ async function radioChange(event) {
       if (document.getElementById('input').checked) {
           if (idx == -1) {
             randoms.push(address)
+            let row = randoms.length
             table_in.rows.add(null, [
               ["input_" + row,  "", "", "", ""]
             ]);
 
             /*
-            let row = randoms.length
             prophecy.getCell(row, 0).values = [["input_" + row]]
             prophecy.getCell(row, 1).hyperlink = {
                 textToDisplay: address,
