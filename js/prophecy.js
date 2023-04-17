@@ -114,17 +114,15 @@ async function radioChange(event) {
             randoms.push(address)
             let row = randoms.length
             table_in.rows.add(null, [
-              ["input_" + row,  "", "", "", ""]
+              ["input_" + row,  "", cell.values[0][0], "", ""]
             ]);
-
-            /*
-            prophecy.getCell(row, 0).values = [["input_" + row]]
+            // prophecy.getCell(row, 0).values = [["input_" + row]]
             prophecy.getCell(row, 1).hyperlink = {
                 textToDisplay: address,
                 screenTip: "input_" + row,
                 documentReference: address
                 }
-            prophecy.getCell(row, 2).values = cell.values
+            // prophecy.getCell(row, 2).values = cell.values
             prophecy.getCell(row, 2).numberFormat = cell.numberFormat
             prophecy.getCell(row, 3).dataValidation.rule = {
                   list: {
