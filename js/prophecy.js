@@ -199,7 +199,7 @@ async function onRandomsChanged(eventArgs) {
     console.log("Data was changed with binding " + eventArgs.binding.id);
 
     // Get the name of the table that's changed.
-    const table: Excel.Table = context.workbook.bindings.getItem(eventArgs.binding.id).getTable();
+    const table = context.workbook.bindings.getItem(eventArgs.binding.id).getTable();
     table.load("name");
 
     await context.sync();
