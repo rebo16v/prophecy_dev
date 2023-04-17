@@ -50,6 +50,8 @@ Office.onReady((info) => {
                 let table_out = prophecy.tables.add("G1:I1", true);
                 table_out.name = "forecasts";
                 table_out.getHeaderRowRange().values = [["name", "cell", "value"]];
+                const binding = context.workbook.bindings.add(table_in.getRange(), "Table", "randoms");
+                binding.onDataChanged.add(onRandomsChanged);
                 /*
                 range1 = prophecy.getRange("A1:E1");
                 range1.values = [["name", "cell", "value", "distribution", "parameters"]];
@@ -189,5 +191,18 @@ async function config(event) {
         }
       }
     });
+  });
+}
+
+async function onRandomsChanged(eventArgs: Excel.BindingDataChangedEventArgs) {
+  await Excel.run(async (context) => {
+    console.log("Data was changed with binding " + eventArgs.binding.id);
+
+    // Get the name of the table that's changed.
+    const table: Excel.Table = context.workbook.bindings.getItem(eventArgs.binding.id).getTable();
+    table.load("name");
+
+    await context.sync();
+    console.log("Name of the changed table: " + table.name);
   });
 }
