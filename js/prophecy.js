@@ -130,7 +130,6 @@ async function radioChange(event) {
                     source: distributions
                   }
                 };
-            */
           }
           if (idx2 != -1) {
             forecasts.splice(idx2, 1);
