@@ -198,6 +198,11 @@ async function onRandomsChanged(eventArgs) {
   await Excel.run(async (context) => {
     console.log("Data was changed with binding " + eventArgs.binding.id);
 
+    let details = eventArgs.details;
+    let address = eventArgs.address;
+    console.log(`Change at ${address}: was ${details.valueBefore}(${details.valueTypeBefore}),`
+            + ` now is ${details.valueAfter}(${details.valueTypeAfter})`);
+
     // Get the name of the table that's changed.
     const table = context.workbook.bindings.getItem(eventArgs.binding.id).getTable();
     table.load("name");
