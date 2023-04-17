@@ -194,7 +194,7 @@ async function config(event) {
   });
 }
 
-async function onRandomsChanged(eventArgs: Excel.BindingDataChangedEventArgs) {
+async function onRandomsChanged(eventArgs) {
   await Excel.run(async (context) => {
     console.log("Data was changed with binding " + eventArgs.binding.id);
 
