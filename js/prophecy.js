@@ -99,14 +99,6 @@ async function workbookChange(event) {
     });
 }
 
-/*
-{"min":100, "max":200}
-{"mean":500, "stdev":50}
-{"min":100, "max":200, "mode":125}
-[{"min":1, "max":1.5, "prob":0.2},{"min":2, "max":2.5, "prob":0.6},{"min":3, "max":3.5, "prob":0.2}]
-[{"min":1, "max":1.5, "prob":0.4},{"min":2, "max":2.5, "prob":0.2},{"min":3, "max":3.5, "prob":0.4}]
-*/
-
 async function prophecyChange(event) {
   await Excel.run(async (context) => {
     const address = event.address;
@@ -114,27 +106,27 @@ async function prophecyChange(event) {
     console.log("address => " + address);
     console.log("values => " + value);
     if (address.charAt(0) == "D") {
-      const row = parseInt(address.substring(1));
+      const row = parseInt(address.substring(1)) - 1;
       const prophecy = context.workbook.worksheets.getItem(sheet_name);
       const cell = prophecy.getCell(row, 4);
       switch (value) {
         case "uniform":
-          cell.values = [["uni"]];
+          cell.values = [["{\"min\":100, \"max\":200}"]];
           break;
         case "normal":
-          cell.values = [["normal"]];
+          cell.values = [["{\"mean\":500, \"stdev\":50}"]];
           break;
         case "triangular":
-          cell.values = [["tri"]];
+          cell.values = [["{\"min\":100, \"max\":200, \"mode\":125}"]];
           break;
         case "yes/no":
-          cell.values = [["hola"]];
+          cell.values = [["{\"yes\":0.7}"]];
           break;
         case "discrete":
-          cell.values = [["disc"]];
+          cell.values = [["[{\"val\":1, \"prob\":0.4},{\"val\":2, \"prob\":0.2},{\"val\":3, \"prob\":0.4}]"]];
           break;
         case "custom":
-          cell.values = [["custom"]];
+          cell.values = [["[{\"min\":1, \"max\":1.5, \"prob\":0.2},{\"min\":2, \"max\":2.5, \"prob\":0.6},{\"min\":3, \"max\":3.5, \"prob\":0.2}]"]];
           break;
       }
     }
