@@ -45,8 +45,8 @@ Office.onReady((info) => {
               }
               else {
                 let prophecy = context.workbook.worksheets.add(sheet_name)
-                let table_in = prophecy.tables.add("A1:E1", true);
                 /*
+                let table_in = prophecy.tables.add("A1:E1", true);
                 table_in.name = "randoms";
                 table_in.getHeaderRowRange().values = [["name", "cell", "value", "distribution", "parameters"]];
                 let table_out = prophecy.tables.add("G1:I1", true);
