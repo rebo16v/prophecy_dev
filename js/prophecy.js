@@ -117,7 +117,7 @@ async function prophecyChange(event) {
       const row = parseInt(address.substring(1));
       const prophecy = context.workbook.worksheets.getItem(sheet_name);
       const cell = prophecy.getCell(row, 4);
-      switch (conf[3]) {
+      switch (value) {
         case "uniform":
           cell.values = [["uni"]];
           break;
