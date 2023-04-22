@@ -73,7 +73,8 @@ Office.onReady((info) => {
                 range2.format.borders.getItem('EdgeLeft').style = 'Continuous';
                 range2.format.borders.getItem('EdgeRight').style = 'Continuous';
                 range2.format.borders.getItem('EdgeTop').style = 'Continuous';
-                range2.format.fill.color = color_input
+                range2.format.fill.color = color_input;
+                prophecy.onChanged.add(prophecyChange);
                 return context.sync();
               }
           });
