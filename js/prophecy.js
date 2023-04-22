@@ -99,9 +99,45 @@ async function workbookChange(event) {
     });
 }
 
+/*
+{"min":100, "max":200}
+{"mean":500, "stdev":50}
+{"min":100, "max":200, "mode":125}
+[{"min":1, "max":1.5, "prob":0.2},{"min":2, "max":2.5, "prob":0.6},{"min":3, "max":3.5, "prob":0.2}]
+[{"min":1, "max":1.5, "prob":0.4},{"min":2, "max":2.5, "prob":0.2},{"min":3, "max":3.5, "prob":0.4}]
+*/
+
 async function prophecyChange(event) {
   await Excel.run(async (context) => {
-    console.log("address => " + event.address);
+    const address = event.address;
+    const value = event.details.valueAfter
+    console.log("address => " + address);
+    console.log("values => " + value);
+    if (address.charAt(0) == "D") {
+      const row = parseInt(address.substring(1));
+      const prophecy = context.workbook.worksheets.getItem(sheet_name);
+      const cell = prophecy.getCell(row, 4);
+      switch (conf[3]) {
+        case "uniform":
+          cell.values = [["uni"]];
+          break;
+        case "normal":
+          cell.values = [["normal"]];
+          break;
+        case "triangular":
+          cell.values = [["tri"]];
+          break;
+        case "yes/no":
+          cell.values = [["hola"]];
+          break;
+        case "discrete":
+          cell.values = [["disc"]];
+          break;
+        case "custom":
+          cell.values = [["custom"]];
+          break;
+      }
+    }
     await context.sync();
   });
 }
@@ -114,7 +150,7 @@ async function radioChange(event) {
     // let table_in = sheet.tables.getItem("randoms");
     // let table_out = sheet.tables.getItem("forecasts");
     cell.load("address");
-    cell.load("values")
+    cell.load("values");
     cell.load("numberFormat")
     return context.sync().then(function() {
       let address = cell.address
@@ -129,7 +165,7 @@ async function radioChange(event) {
               ["input_" + row,  "", cell.values[0][0], "", ""]
             ]);
             */
-            prophecy.getCell(row, 0).values = [["input_" + row]]
+            prophecy.getCell(row, 0).values = [["input_" + row]];
             prophecy.getCell(row, 1).hyperlink = {
                 textToDisplay: address,
                 screenTip: "input_" + row,
