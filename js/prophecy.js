@@ -41,10 +41,12 @@ Office.onReady((info) => {
                     }
                   });
                 });
+                prophecy.onChanged.add(prophecyChange);
               }
               else {
                 let prophecy = context.workbook.worksheets.add(sheet_name)
                 let table_in = prophecy.tables.add("A1:E1", true);
+                /*
                 table_in.name = "randoms";
                 table_in.getHeaderRowRange().values = [["name", "cell", "value", "distribution", "parameters"]];
                 let table_out = prophecy.tables.add("G1:I1", true);
@@ -52,7 +54,7 @@ Office.onReady((info) => {
                 table_out.getHeaderRowRange().values = [["name", "cell", "value"]];
                 const binding = context.workbook.bindings.add(table_in.getRange(), "Table", "randoms");
                 binding.onDataChanged.add(onRandomsChanged);
-                /*
+                */
                 range1 = prophecy.getRange("A1:E1");
                 range1.values = [["name", "cell", "value", "distribution", "parameters"]];
                 range1.format.borders.getItem('InsideHorizontal').style = 'Continuous';
@@ -72,7 +74,6 @@ Office.onReady((info) => {
                 range2.format.borders.getItem('EdgeRight').style = 'Continuous';
                 range2.format.borders.getItem('EdgeTop').style = 'Continuous';
                 range2.format.fill.color = color_input
-                */
                 return context.sync();
               }
           });
@@ -97,13 +98,20 @@ async function workbookChange(event) {
     });
 }
 
+async function prophecyChanged(event) {
+  await Excel.run(async (context) => {
+    console.log("address => " + event.address);
+    await context.sync();
+  });
+}
+
 async function radioChange(event) {
   await Excel.run(async (context) => {
     let sheet = context.workbook.worksheets.getActiveWorksheet();
     let cell = context.workbook.getActiveCell();
     let prophecy = context.workbook.worksheets.getItem(sheet_name);
-    let table_in = sheet.tables.getItem("randoms");
-    let table_out = sheet.tables.getItem("forecasts");
+    // let table_in = sheet.tables.getItem("randoms");
+    // let table_out = sheet.tables.getItem("forecasts");
     cell.load("address");
     cell.load("values")
     cell.load("numberFormat")
@@ -115,16 +123,18 @@ async function radioChange(event) {
           if (idx == -1) {
             randoms.push(address)
             let row = randoms.length
+            /*
             table_in.rows.add(null, [
               ["input_" + row,  "", cell.values[0][0], "", ""]
             ]);
-            // prophecy.getCell(row, 0).values = [["input_" + row]]
+            */
+            prophecy.getCell(row, 0).values = [["input_" + row]]
             prophecy.getCell(row, 1).hyperlink = {
                 textToDisplay: address,
                 screenTip: "input_" + row,
                 documentReference: address
                 }
-            // prophecy.getCell(row, 2).values = cell.values
+            prophecy.getCell(row, 2).values = cell.values
             prophecy.getCell(row, 2).numberFormat = cell.numberFormat
             prophecy.getCell(row, 3).dataValidation.rule = {
                   list: {
@@ -191,23 +201,5 @@ async function config(event) {
         }
       }
     });
-  });
-}
-
-async function onRandomsChanged(eventArgs) {
-  await Excel.run(async (context) => {
-    console.log("Data was changed with binding " + eventArgs.binding.id);
-
-    let details = eventArgs.details;
-    let address = eventArgs.address;
-    console.log(`Change at ${address}: was ${details.valueBefore}(${details.valueTypeBefore}),`
-            + ` now is ${details.valueAfter}(${details.valueTypeAfter})`);
-
-    // Get the name of the table that's changed.
-    const table = context.workbook.bindings.getItem(eventArgs.binding.id).getTable();
-    table.load("name");
-
-    await context.sync();
-    console.log("Name of the changed table: " + table.name);
   });
 }
