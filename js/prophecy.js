@@ -99,7 +99,7 @@ async function workbookChange(event) {
     });
 }
 
-async function prophecyChanged(event) {
+async function prophecyChange(event) {
   await Excel.run(async (context) => {
     console.log("address => " + event.address);
     await context.sync();
