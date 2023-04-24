@@ -17,7 +17,7 @@ Office.onReady((info) => {
             return context.sync().then(function(){
               if (context.workbook.worksheets.items.filter(f => f.name == sheet_name).length > 0) {
                 let prophecy = context.workbook.worksheets.getItem(sheet_name);
-                prophecy.Cells('A:A').ColumnWidth=11;
+                prophecy.getRange("D1:D100").format.columnWidth = 300;
                 let range_in = prophecy.getRange("A2:E100");
                 range_in.load("values");
                 let range_out = prophecy.getRange("G2:I100");
