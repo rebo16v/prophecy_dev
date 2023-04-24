@@ -114,19 +114,19 @@ async function prophecyChange(event) {
           cell.values = [["{\"min\":100, \"max\":200}"]];
           break;
         case "normal":
-          cell.values = [["{\"mean\":500, \"stdev\":50}"]];
+          cell.values = [["{\"mean\":100, \"stdev\":20}"]];
           break;
         case "triangular":
           cell.values = [["{\"min\":100, \"max\":200, \"mode\":125}"]];
           break;
         case "yes/no":
-          cell.values = [["{\"yes\":0.7}"]];
+          cell.values = [["{\"yes\":0.5}"]];
           break;
         case "discrete":
-          cell.values = [["[{\"val\":1, \"prob\":0.4},{\"val\":2, \"prob\":0.2},{\"val\":3, \"prob\":0.4}]"]];
+          cell.values = [["[{\"v\":1, \"p\":0.4},{\"v\":2, \"p\":0.2},{\"v\":3, \"p\":0.4}]"]];
           break;
         case "custom":
-          cell.values = [["[{\"min\":1, \"max\":1.5, \"prob\":0.2},{\"min\":2, \"max\":2.5, \"prob\":0.6},{\"min\":3, \"max\":3.5, \"prob\":0.2}]"]];
+          cell.values = [["[{\"l\":0, \"h\":1, \"p\":0.2},{\"l\":1, \"h\":2, \"p\":0.6},{\"l\":2, \"h\":3, \"p\":0.2}]"]];
           break;
       }
     }
