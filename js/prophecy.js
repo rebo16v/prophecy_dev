@@ -17,10 +17,12 @@ Office.onReady((info) => {
             return context.sync().then(function(){
               if (context.workbook.worksheets.items.filter(f => f.name == sheet_name).length > 0) {
                 let prophecy = context.workbook.worksheets.getItem(sheet_name);
+                prophecy.Cells('A:A').ColumnWidth=11;
                 let range_in = prophecy.getRange("A2:E100");
                 range_in.load("values");
                 let range_out = prophecy.getRange("G2:I100");
                 range_out.load("values");
+                prophecy.onChanged.add(prophecyChange);
                 return context.sync().then(function() {
                   let confs_in = range_in.values;
                   confs_in.forEach(conf => {
@@ -41,7 +43,6 @@ Office.onReady((info) => {
                     }
                   });
                 });
-                prophecy.onChanged.add(prophecyChange);
               } else {
                 let prophecy = context.workbook.worksheets.add(sheet_name)
                 /*
@@ -74,8 +75,8 @@ Office.onReady((info) => {
                 range2.format.borders.getItem('EdgeTop').style = 'Continuous';
                 range2.format.fill.color = color_input;
                 prophecy.onChanged.add(prophecyChange);
+                return context.sync();
               }
-              return context.sync();
           });
         });
       }
@@ -102,8 +103,6 @@ async function prophecyChange(event) {
   await Excel.run(async (context) => {
     const address = event.address;
     const value = event.details.valueAfter
-    console.log("address => " + address);
-    console.log("values => " + value);
     if (address.charAt(0) == "D") {
       const row = parseInt(address.substring(1)) - 1;
       const prophecy = context.workbook.worksheets.getItem(sheet_name);
