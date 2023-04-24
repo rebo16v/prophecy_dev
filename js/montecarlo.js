@@ -30,7 +30,7 @@ async function montecarlo_start() {
       confs_in
         .filter(c => (c[3] == "discrete") || (c[3] == "custom"))
         .forEach((c,i) => {
-          c[6] = c[5].map(p => p.prob).map(cumulativeSum(0));
+          c[6] = c[5].map(x => x.p).map(cumulativeSum(0));
         });
       confs_out.forEach((c,i) => {
         montecarlo_win[i] = window.open("montecarlo.html?id=" + i + "&name=" + c[0] + "&nbins=" + nbins, "forecast_"+i);

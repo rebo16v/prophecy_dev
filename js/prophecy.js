@@ -42,8 +42,7 @@ Office.onReady((info) => {
                   });
                 });
                 prophecy.onChanged.add(prophecyChange);
-              }
-              else {
+              } else {
                 let prophecy = context.workbook.worksheets.add(sheet_name)
                 /*
                 let table_in = prophecy.tables.add("A1:E1", true);
@@ -75,8 +74,8 @@ Office.onReady((info) => {
                 range2.format.borders.getItem('EdgeTop').style = 'Continuous';
                 range2.format.fill.color = color_input;
                 prophecy.onChanged.add(prophecyChange);
-                return context.sync();
               }
+              return context.sync();
           });
         });
       }
