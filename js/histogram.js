@@ -70,6 +70,15 @@ function message(e) {
     mean = summa / sims.length;
     repaint();
   } else {
+    console.log("mean => " + stats.arithmeticMean(sims));
+    console.log("median => " + stats.median(sims));
+    console.log("mode => " + stats.mode(sims));
+    console.log("variance => " + stats.variance(sims));
+    console.log("stdev => " + stats.standardDeviation(sims));
+    console.log("coeff => " + stats.coefficientOfVariation(sims));
+    console.log("kurtosis => " + stats.kurtosis(sims));
+    console.log("skewness => " + stats.skewness(sims));
+
     sims = sims.sort();
     let l = sims.length;
     qs = [sims[Math.round(l/4)], sims[Math.round(l/2)], sims[Math.round(3*l/4)]];
