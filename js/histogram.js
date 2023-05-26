@@ -74,6 +74,8 @@ function message(e) {
     console.log("median => " + median(sims));
     console.log("mode => " + mode(sims));
     console.log("stdev => " + stdev(sims));
+    console.log("min = " + Math.min(...sims));
+    console.log("max = " + Math.max(...sims));
     sims = sims.sort();
     let l = sims.length;
     qs = [sims[Math.round(l/4)], sims[Math.round(l/2)], sims[Math.round(3*l/4)]];
