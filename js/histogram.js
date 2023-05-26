@@ -71,7 +71,7 @@ function message(e) {
     repaint();
   } else {
     console.log("mean => " + pmean(sims));
-    console.log("median => " + pmedian(sims));
+    // console.log("median => " + pmedian(sims));
     console.log("mode => " + pmode(sims));
     console.log("stdev => " + pstdev(sims));
     console.log("min = " + Math.min(...sims));
