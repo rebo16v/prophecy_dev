@@ -1,21 +1,21 @@
-const mean = arr => {
+const pmean = arr => {
   const sum = arr.reduce((a, b) => a + b, 0);
   return (sum / arr.length);
 };
 
-const stdev = arr => {
+const pstdev = arr => {
   const n = arr.length;
   const mean = arr.reduce((a, b) => a + b) / n;
   return Math.sqrt(arr.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n);
 };
 
-const median = arr => {
+const pmedian = arr => {
   const mid = Math.floor(arr.length / 2),
     nums = [...arr].sort((a, b) => a - b);
   return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
 };
 
-const mode = arr => {
+const pmode = arr => {
   let object = {}
   for (let i = 0; i < arr.length; i++) {
     if (object[arr[i]]) {

@@ -70,10 +70,10 @@ function message(e) {
     mean = summa / sims.length;
     repaint();
   } else {
-    console.log("mean => " + mean(sims));
-    console.log("median => " + median(sims));
-    console.log("mode => " + mode(sims));
-    console.log("stdev => " + stdev(sims));
+    console.log("mean => " + pmean(sims));
+    console.log("median => " + pmedian(sims));
+    console.log("mode => " + pmode(sims));
+    console.log("stdev => " + pstdev(sims));
     console.log("min = " + Math.min(...sims));
     console.log("max = " + Math.max(...sims));
     sims = sims.sort();
