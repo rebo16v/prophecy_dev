@@ -9,11 +9,19 @@ const pstdev = arr => {
   return Math.sqrt(arr.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n);
 };
 
-const pmedian = arr => {
+const pmedian2 = arr => {
   const mid = Math.floor(arr.length / 2),
     nums = [...arr].sort((a, b) => a - b);
   return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
 };
+
+const pmedian = arr => {
+  const midpoint = Math.floor(arr.length / 2);
+  const median = arr.length % 2 === 1 ?
+    arr[midpoint] : 
+    (arr[midpoint - 1] + arr[midpoint]) / 2; 
+  return median;
+}
 
 const pmode = arr => {
   let object = {}

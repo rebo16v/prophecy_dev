@@ -13,7 +13,7 @@ let width, height;
 
 let svg, axis;
 let name_text, iter_text, mean_line, mean_text;
-let avg_text, stdev_text, mode_text, min_text, max_text;
+let avg_text, stdev_text, median_text, mode_text, min_text, max_text;
 let stats = false;
 let qs, q_lines, q_texts, q_texts1, q_texts2;
 let mouse = false;
@@ -118,18 +118,22 @@ function message(e) {
 		.text("stdev = " + pstdev(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
 		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+20);
+	median_text = svg.append("text")
+		.text("median = " + pmedian(sims))
+		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
+		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+40);
 	mode_text = svg.append("text")
 		.text("mode = " + pmode(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+40);
+		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+60);
 	min_text = svg.append("text")
 		.text("min = " + Math.min(...sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+60);
+		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+80);
 	max_text = svg.append("text")
 		.text("max = " + Math.max(...sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+80);
+		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+1000);
 		
 		
     m_text = svg.append("text")
@@ -226,9 +230,10 @@ function resize() {
   if (stats) {
 	avg_text.attr("x", width-margin.right).attr("y", 4*margin.top);
 	stdev_text.attr("x", width-margin.right).attr("y", 4*margin.top+20);
-	mode_text.attr("x", width-margin.right).attr("y", 4*margin.top+40);
-	min_text.attr("x", width-margin.right).attr("y", 4*margin.top+60);
-	max_text.attr("x", width-margin.right).attr("y", 4*margin.top+80);
+	mean_text.attr("x", width-margin.right).attr("y", 4*margin.top+40);
+	mode_text.attr("x", width-margin.right).attr("y", 4*margin.top+60);
+	min_text.attr("x", width-margin.right).attr("y", 4*margin.top+80);
+	max_text.attr("x", width-margin.right).attr("y", 4*margin.top+100);
     qs.map(q => x(q))
       .forEach((q,i) => {
         q_texts[i].attr("y", (i+2)*margin.top);
@@ -293,7 +298,7 @@ function mousemove(e) {
 		console.log("mousemove => " + mdown + "->" + value);	
 		const begin = x(mdown);
 		inter_line.attr("x", Math.min(begin, coord)).attr("width", Math.abs(coord-begin));		
-		inter_text.text("Qinterval=" q + "%").attr("x", Math.max(begin,coord));		
+		inter_text.text("Qinterval=" + q + "%").attr("x", Math.max(begin,coord));		
 	}
   } else {
     m_text.attr("visibility", "hidden");
