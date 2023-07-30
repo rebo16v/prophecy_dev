@@ -18,7 +18,7 @@ let stats = false;
 let qs, q_lines, q_texts, q_texts1, q_texts2;
 let mouse = false;
 let mdown = -1, mp = -1;
-let inter;
+let inter_line, inter_text;
 let m_line, m_text;
 
 window.addEventListener("load", (e) => {
@@ -101,9 +101,12 @@ function message(e) {
           .attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
 	  
-	inter = svg.append("rect")
-		.attr("stroke", "red").attr("style", "fill").attr("opacity", ".2")
+	inter_line = svg.append("rect")
+		.style("stroke", "red").style("fill", "red").style("opacity", ".2")
 		.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
+	inter_text = svg.append("text")
+		.attr("font-family", "Arial").attr("fill", "black")
+		.attr("text-anchor", "end").attr("y", margin.top)	
 	  
 	iter_text.attr("x", width-margin.right).attr("y", 2*margin.top);
 	  
@@ -265,21 +268,25 @@ function rescale(scale, step) {
 function mousemove(e) {
   const coord = e.x;
   if ((coord>margin.left) && (coord<(width-margin.right))) {
-    const value = x.invert(coord);
-    const idx = sims.findIndex(x => x>value);
-    let q;
-    if (idx>=0) {q = Math.round(100 * (idx / sims.length));}
-    else {q = 100;}
+    const value = x.invert(coord);    
+    let q;    
 	if (mdown == -1 || mup != -1) {
+		const idx = sims.findIndex(x => x>value);
+		if (idx>=0) {q = Math.round(100 * (idx / sims.length));}
+		else {q = 100;}
 		m_text.attr("y", margin.top).attr("visibility", "visible");
 		m_text1.text("Q=" + q + "%").attr("x", coord-2).attr("visibility", "visible");
 		m_text2.text(value).attr("x", coord-2).attr("visibility", "visible");
 		m_line.attr("x1", coord).attr("x2", coord).attr("y1", height-margin.bottom).attr("y2", margin.top).attr("visibility", "visible");
 	}
 	else {
+		const idx = sims.findIndex(x => x>=Math.min(mdown,value) && x<=Math.max(mdown,value));
+		if (idx>=0) {q = Math.round(100 * (idx / sims.length));}
+		else {q = 0;}
 		console.log("mousemove => " + mdown + "->" + value);	
 		let begin = x(mdown);
-		inter.attr("x", Math.min(begin, coord)).attr("width", Math.abs(coord-begin));		
+		inter_line.attr("x", Math.min(begin, coord)).attr("width", Math.abs(coord-begin));		
+		inter_text.text(q + "%").attr("x", coord);		
 	}
   } else {
     m_text.attr("visibility", "hidden");
