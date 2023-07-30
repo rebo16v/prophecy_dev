@@ -105,7 +105,7 @@ function message(e) {
 		.style("stroke", "red").style("fill", "red").style("opacity", ".2")
 		.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
 	inter_text = svg.append("text")
-		.attr("font-family", "Arial").attr("fill", "black")
+		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "red")
 		.attr("text-anchor", "end").attr("y", margin.top)	
 	  
 	iter_text.attr("x", width-margin.right).attr("y", 2*margin.top);
@@ -280,8 +280,9 @@ function mousemove(e) {
 		m_line.attr("x1", coord).attr("x2", coord).attr("y1", height-margin.bottom).attr("y2", margin.top).attr("visibility", "visible");
 	}
 	else {
-		const idx = sims.findIndex(x => x>=Math.min(mdown,value) && x<=Math.max(mdown,value));
-		if (idx>=0) {q = Math.round(100 * (idx / sims.length));}
+		const idx1 = sims.findIndex(x => x>Math.min(mdown,value));
+		const idx2 = sims.findIndex(x => x>Math.max(mdown,value));
+		if (idx1>=0 && idx2>=0) {q = Math.round(100 * (Math.abs(idx1-idx2) / sims.length));}
 		else {q = 0;}
 		console.log("mousemove => " + mdown + "->" + value);	
 		let begin = x(mdown);
