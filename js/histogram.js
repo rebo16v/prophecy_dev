@@ -102,7 +102,7 @@ function message(e) {
       });
 	  
 	inter_line = svg.append("rect")
-		.style("stroke", "red").style("fill", "red").style("opacity", ".2")
+		 // .style("stroke", "red").style("fill", "red").style("opacity", ".2")
 		.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
 	inter_text = svg.append("text")
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "red")
@@ -291,7 +291,7 @@ function mousemove(e) {
 		if (idx1>=0 && idx2>=0) {q = Math.round(100 * (Math.abs(idx1-idx2) / sims.length));}
 		else {q = 0;}
 		console.log("mousemove => " + mdown + "->" + value);	
-		let begin = x(mdown);
+		const begin = x(mdown);
 		inter_line.attr("x", Math.min(begin, coord)).attr("width", Math.abs(coord-begin));		
 		inter_text.text(q + "%").attr("x", Math.max(begin,coord));		
 	}
