@@ -108,23 +108,23 @@ function message(e) {
 	avg_text = svg.append("text")
 		.text("mean = " + pmean(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("x", "100").attr_("y", "100");
+		.attr("x", "100").attr("y", "100");
 	stdev_text = svg.append("text")
 		.text("stdev = " + pstdev(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("x", "100").attr_("y", "130");
+		.attr("x", "100").attr("y", "130");
 	mode_text = svg.append("text")
 		.text("mode = " + pmode(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("x", "100").attr_("y", "160");
+		.attr("x", "100").attr("y", "160");
 	min_text = svg.append("text")
 		.text("min = " + Math.min(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("x", "100").attr_("y", "190");
+		.attr("x", "100").attr("y", "190");
 	max_text = svg.append("text")
 		.text("max = " + Math.max(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("x", "100").attr_("y", "220");
+		.attr("x", "100").attr("y", "220");
 		
 		
     m_text = svg.append("text")
