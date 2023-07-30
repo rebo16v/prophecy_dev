@@ -18,6 +18,7 @@ let stats = false;
 let qs, q_lines, q_texts, q_texts1, q_texts2;
 let mouse = false;
 let mdown = -1, mp = -1;
+let inter;
 let m_line, m_text;
 
 window.addEventListener("load", (e) => {
@@ -99,6 +100,10 @@ function message(e) {
           .attr("stroke-dasharray", "5 5")
           .attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
+	  
+	inter = svg.append("line")
+		.attr("stroke", "red").attr("style", "fill").attr("opacity", ".2")
+		.attr("y1", height-margin.bottom).attr("y2", margin.top);
 	  
 	iter_text.attr("x", width-margin.right).attr("y", 2*margin.top);
 	  
@@ -272,6 +277,7 @@ function mousemove(e) {
 		m_line.attr("x1", coord).attr("x2", coord).attr("y1", height-margin.bottom).attr("y2", margin.top).attr("visibility", "visible");
 	}
 	else {
+		inter.attr("x", x(mdown)).attr("width", coord);
 		console.log("mousemove => " + mdown + "->" + value);		
 	}
   } else {
