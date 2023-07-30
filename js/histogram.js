@@ -243,8 +243,8 @@ function resize() {
       });
 	if (mdown != -1 && mup != -1) {
 		inter_line
-			//.attr("x", x(Math.min(mdown, mup))).attr("width", Math.abs(x(mdown)-x(mup)))
-			.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
+			.attr("x", x(Math.min(mdown, mup))).attr("width", Math.abs(x(mdown)-x(mup)))
+			//.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
 		inter_text.attr("x", x(Math.max(mdown,mup))).attr("y", margin.top);		
 		}
   }
