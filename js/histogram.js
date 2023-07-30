@@ -239,7 +239,7 @@ function resize() {
 	if (mdown != -1 && mup != -1) {
 		inter_line
 			.attr("x", x(Math.min(mdown, mup))).attr("width", Math.abs(x(mdown)-x(mup)))
-			.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
+			.attr("y", margin.top).attr("height", height-margin.bottom);
 		inter_text.attr("x", x(Math.max(mdown,mup))).attr("y", margin.top);		
 		}
   }
@@ -293,7 +293,7 @@ function mousemove(e) {
 		console.log("mousemove => " + mdown + "->" + value);	
 		const begin = x(mdown);
 		inter_line.attr("x", Math.min(begin, coord)).attr("width", Math.abs(coord-begin));		
-		inter_text.text(q + "%").attr("x", Math.max(begin,coord));		
+		inter_text.text("Qinterval=" q + "%").attr("x", Math.max(begin,coord));		
 	}
   } else {
     m_text.attr("visibility", "hidden");
