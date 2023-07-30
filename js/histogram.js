@@ -164,20 +164,22 @@ function repaint() {
   console.log("==========================================")
   console.log("max => (" + max_scale + "," + max_step + ")");
   console.log("step => "+ step);
-  if ((step == 1) || (step < max_step)) {
-    console.log("prob menor");
-    if (step <=  1) {
-      max_scale /= 10;
-      max_step = 10;
-    } else max_step -= 1;
-    rescale(max_scale, max_step);
-  } else if (step > max_step) {
-    console.log("prob mayor");
-    if (step >  10) {
-      max_scale *= 10;
-      max_step = 1;
-    } else max_step += 1;
-    rescale(max_scale, max_step);
+  if (!stats) {
+	  if ((step == 1) || (step < max_step)) {
+		console.log("prob menor");
+		if (step <=  1) {
+		  max_scale /= 10;
+		  max_step = 10;
+		} else max_step -= 1;
+		rescale(max_scale, max_step);
+	  } else if (step > max_step) {
+		console.log("prob mayor");
+		if (step >  10) {
+		  max_scale *= 10;
+		  max_step = 1;
+		} else max_step += 1;
+		rescale(max_scale, max_step);
+	  }
   }
   svg.selectAll("rect")
       .data(bins)
