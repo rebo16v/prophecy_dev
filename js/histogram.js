@@ -236,6 +236,12 @@ function resize() {
         q_texts2[i].attr("x", q-2);
         q_lines[i].attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
+	if (mdown != -1 && mup != -1) {
+		inter_line
+			.attr("x", x(Math.min(mdown, mup))).attr("width", x(Math.abs(mdown-mup)))
+			.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);;		
+		inter_text.text(q + "%").attr("x", Math.max(mdown,mup)).attr("y", 2*margin.top);		
+		}
   }
   repaint();
 }
@@ -287,7 +293,7 @@ function mousemove(e) {
 		console.log("mousemove => " + mdown + "->" + value);	
 		let begin = x(mdown);
 		inter_line.attr("x", Math.min(begin, coord)).attr("width", Math.abs(coord-begin));		
-		inter_text.text(q + "%").attr("x", coord);		
+		inter_text.text(q + "%").attr("x", Math.max(begin,coord));		
 	}
   } else {
     m_text.attr("visibility", "hidden");
