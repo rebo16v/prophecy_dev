@@ -102,7 +102,7 @@ function message(e) {
       });
 	  
 	inter_line = svg.append("rect")
-		 // .style("stroke", "red").style("fill", "red").style("opacity", ".2")
+		 .style("fill", "red").style("fill-opacity", ".2")
 		.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
 	inter_text = svg.append("text")
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "red")
