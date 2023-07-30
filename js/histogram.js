@@ -230,7 +230,7 @@ function resize() {
   if (stats) {
 	avg_text.attr("x", width-margin.right).attr("y", 4*margin.top);
 	stdev_text.attr("x", width-margin.right).attr("y", 4*margin.top+20);
-	mean_text.attr("x", width-margin.right).attr("y", 4*margin.top+40);
+	median_text.attr("x", width-margin.right).attr("y", 4*margin.top+40);
 	mode_text.attr("x", width-margin.right).attr("y", 4*margin.top+60);
 	min_text.attr("x", width-margin.right).attr("y", 4*margin.top+80);
 	max_text.attr("x", width-margin.right).attr("y", 4*margin.top+100);
