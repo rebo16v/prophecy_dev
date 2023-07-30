@@ -123,7 +123,7 @@ function message(e) {
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
 		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+40);
 	mode_text = svg.append("text")
-		.text("mode = " + pmode(sims).toFixed(2))
+		.text("mode = " + pmode(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
 		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+60);
 	min_text = svg.append("text")
