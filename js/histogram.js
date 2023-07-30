@@ -297,4 +297,5 @@ function mouseup(e) {
   if ((coord>margin.left) && (coord<(width-margin.right))) {
     mup = x.invert(coord);
 	console.log("mousemove => " + mdown + "->" + mup);		
+  }
 }
