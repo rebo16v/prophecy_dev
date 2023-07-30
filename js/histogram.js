@@ -277,8 +277,8 @@ function mousemove(e) {
 		m_line.attr("x1", coord).attr("x2", coord).attr("y1", height-margin.bottom).attr("y2", margin.top).attr("visibility", "visible");
 	}
 	else {
-		inter.attr("x", x(mdown)).attr("width", coord);
 		console.log("mousemove => " + mdown + "->" + value);		
+		inter.attr("x", x(mdown)).attr("width", coord-x(mdown);		
 	}
   } else {
     m_text.attr("visibility", "hidden");
