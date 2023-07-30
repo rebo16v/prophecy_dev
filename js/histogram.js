@@ -204,7 +204,7 @@ function repaint() {
       .attr("y1", height-margin.bottom)
       .attr("y2", margin.top);
     mean_text
-      .text("mean=" + mean)
+      .text("mean=" + mean.toFixed(2))
       .attr("x", mean_x-2)
       .attr("y", margin.top);
   }
