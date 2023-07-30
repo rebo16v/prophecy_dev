@@ -13,7 +13,7 @@ let width, height;
 
 let svg, axis;
 let name_text, iter_text, mean_line, mean_text;
-let mean_text, stdev_text, mode_text, min_text, max_text;
+let avg_text, stdev_text, mode_text, min_text, max_text;
 let stats = false;
 let qs, q_lines, q_texts, q_texts1, q_texts2;
 let mouse = false;
@@ -105,7 +105,7 @@ function message(e) {
           .attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
 	  
-	mean_text = svg.append("text")
+	avg_text = svg.append("text")
 		.text("mean = " + pmean(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
 		.attr("x", "100").attr_("y", "100");
