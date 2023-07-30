@@ -105,26 +105,28 @@ function message(e) {
           .attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
 	  
+	  iter_text.attr("x", width-margin.right).attr("y", 2*margin.top);
+	  
 	avg_text = svg.append("text")
 		.text("mean = " + pmean(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("x", "100").attr("y", "100");
+		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top);
 	stdev_text = svg.append("text")
 		.text("stdev = " + pstdev(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("x", "100").attr("y", "130");
+		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+20);
 	mode_text = svg.append("text")
 		.text("mode = " + pmode(sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("x", "100").attr("y", "160");
+		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+40);
 	min_text = svg.append("text")
-		.text("min = " + Math.min(sims))
+		.text("min = " + Math.min(...sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("x", "100").attr("y", "190");
+		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+60);
 	max_text = svg.append("text")
-		.text("max = " + Math.max(sims))
+		.text("max = " + Math.max(...sims))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("x", "100").attr("y", "220");
+		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+80);
 		
 		
     m_text = svg.append("text")
