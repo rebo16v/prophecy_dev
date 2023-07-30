@@ -101,9 +101,9 @@ function message(e) {
           .attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
 	  
-	inter = svg.append("line")
+	inter = svg.append("rect")
 		.attr("stroke", "red").attr("style", "fill").attr("opacity", ".2")
-		.attr("y1", height-margin.bottom).attr("y2", margin.top);
+		.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
 	  
 	iter_text.attr("x", width-margin.right).attr("y", 2*margin.top);
 	  
