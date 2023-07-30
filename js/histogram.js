@@ -240,7 +240,7 @@ function resize() {
 		inter_line
 			.attr("x", x(Math.min(mdown, mup))).attr("width", x(Math.abs(mdown-mup)))
 			.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);;		
-		inter_text.text(q + "%").attr("x", Math.max(mdown,mup)).attr("y", 2*margin.top);		
+		inter_text.attr("x", Math.max(mdown,mup)).attr("y", 2*margin.top);		
 		}
   }
   repaint();
