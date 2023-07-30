@@ -105,7 +105,7 @@ function message(e) {
           .attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
 	  
-	  iter_text.attr("x", width-margin.right).attr("y", 2*margin.top);
+	iter_text.attr("x", width-margin.right).attr("y", 2*margin.top);
 	  
 	avg_text = svg.append("text")
 		.text("mean = " + pmean(sims))
@@ -219,6 +219,11 @@ function resize() {
   name_text.attr("x", width-margin.right).attr("y", margin.top);
   iter_text.attr("x", width-margin.right).attr("y", 2*margin.top);
   if (stats) {
+	avg_text.attr("x", width-margin.right).attr("y", 4*margin.top);
+	stdev_text.attr("x", width-margin.right).attr("y", 4*margin.top+20);
+	mode_text.attr("x", width-margin.right).attr("y", 4*margin.top+40);
+	min_text.attr("x", width-margin.right).attr("y", 4*margin.top+60);
+	max_text.attr("x", width-margin.right).attr("y", 4*margin.top+80);
     qs.map(q => x(q))
       .forEach((q,i) => {
         q_texts[i].attr("y", (i+2)*margin.top);
