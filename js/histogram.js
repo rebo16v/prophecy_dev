@@ -89,7 +89,7 @@ function message(e) {
         });
     q_texts2 = q_texts.map((q,i) => {
         return q.append("tspan")
-          .text(qs[i])
+          .text(qs[i].toFixed(2))
           .attr("x", x(qs[i])-2)
           .attr("dy", 15);
         });
@@ -115,23 +115,23 @@ function message(e) {
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
 		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top);
 	stdev_text = svg.append("text")
-		.text("stdev = " + pstdev(sims))
+		.text("stdev = " + pstdev(sims).toFixed(2))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
 		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+20);
 	median_text = svg.append("text")
-		.text("median = " + pmedian(sims))
+		.text("median = " + pmedian(sims).toFixed(2))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
 		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+40);
 	mode_text = svg.append("text")
-		.text("mode = " + pmode(sims))
+		.text("mode = " + pmode(sims).toFixed(2))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
 		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+60);
 	min_text = svg.append("text")
-		.text("min = " + Math.min(...sims))
+		.text("min = " + Math.min(...sims).toFixed(2))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
 		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+80);
 	max_text = svg.append("text")
-		.text("max = " + Math.max(...sims))
+		.text("max = " + Math.max(...sims).toFixed(2))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
 		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+1000);
 		
@@ -289,7 +289,7 @@ function mousemove(e) {
 		else {q = 100;}
 		m_text.attr("y", margin.top).attr("visibility", "visible");
 		m_text1.text("Q=" + q + "%").attr("x", coord-2).attr("visibility", "visible");
-		m_text2.text(value).attr("x", coord-2).attr("visibility", "visible");
+		m_text2.text(value.toFixed(2)).attr("x", coord-2).attr("visibility", "visible");
 		m_line.attr("x1", coord).attr("x2", coord).attr("y1", height-margin.bottom).attr("y2", margin.top).attr("visibility", "visible");
 	}
 	else {
