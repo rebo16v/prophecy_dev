@@ -270,7 +270,7 @@ function mousemove(e) {
     let q;
     if (idx>=0) {q = Math.round(100 * (idx / sims.length));}
     else {q = 100;}
-	if (mdown == -1) {
+	if (mdown == -1 || mup != -1) {
 		m_text.attr("y", margin.top).attr("visibility", "visible");
 		m_text1.text("Q=" + q + "%").attr("x", coord-2).attr("visibility", "visible");
 		m_text2.text(value).attr("x", coord-2).attr("visibility", "visible");
@@ -279,7 +279,7 @@ function mousemove(e) {
 	else {
 		console.log("mousemove => " + mdown + "->" + value);	
 		let begin = x(mdown);
-		inter.attr("x", begin).attr("width", coord-begin);		
+		inter.attr("x", Math.min(begin, coord)).attr("width", Math.abs(coord-begin));		
 	}
   } else {
     m_text.attr("visibility", "hidden");
@@ -303,6 +303,5 @@ function mouseup(e) {
   console.log("mouseup => " + coord);
   if ((coord>margin.left) && (coord<(width-margin.right))) {
     mup = x.invert(coord);
-	console.log("mousemove => " + mdown + "->" + mup);		
   }
 }
