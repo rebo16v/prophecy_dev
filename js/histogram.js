@@ -225,6 +225,8 @@ function resize() {
       .join(
           update => update
                 .attr("visibility", "visible")
+				.attr("x1", margin.left)
+                .attr("x2", width-margin.right)
                 .attr("y1", x => y(x))
                 .attr("y2", x => y(x)));
   name_text.attr("x", width-margin.right).attr("y", margin.top);
