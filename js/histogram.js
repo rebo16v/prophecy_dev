@@ -17,7 +17,7 @@ let avg_text, stdev_text, mode_text, min_text, max_text;
 let stats = false;
 let qs, q_lines, q_texts, q_texts1, q_texts2;
 let mouse = false;
-let mousedown = -1, mouseup = -1;
+let mdown = -1, mp = -1;
 let m_line, m_text;
 
 window.addEventListener("load", (e) => {
@@ -265,14 +265,14 @@ function mousemove(e) {
     let q;
     if (idx>=0) {q = Math.round(100 * (idx / sims.length));}
     else {q = 100;}
-	if (mousedown == -1) {
+	if (mdown == -1) {
 		m_text.attr("y", margin.top).attr("visibility", "visible");
 		m_text1.text("Q=" + q + "%").attr("x", coord-2).attr("visibility", "visible");
 		m_text2.text(value).attr("x", coord-2).attr("visibility", "visible");
 		m_line.attr("x1", coord).attr("x2", coord).attr("y1", height-margin.bottom).attr("y2", margin.top).attr("visibility", "visible");
 	}
 	else {
-		console.log("mousemove => " + mousedown + "->" + value);		
+		console.log("mousemove => " + mdown + "->" + value);		
 	}
   } else {
     m_text.attr("visibility", "hidden");
@@ -286,8 +286,8 @@ function mousedown(e) {
   const coord = e.x;
   console.log("mousedown => " + coord);
   if ((coord>margin.left) && (coord<(width-margin.right))) {
-	mouseup = -1;
-    mousedown = x.invert(coord);	
+	mup = -1;
+    mdown = x.invert(coord);	
   }
 }
 
@@ -295,6 +295,6 @@ function mouseup(e) {
   const coord = e.x;
   console.log("mouseup => " + coord);
   if ((coord>margin.left) && (coord<(width-margin.right))) {
-    mouseup = x.invert(coord);
-	console.log("mousemove => " + mousedown + "->" + mouseup);		
+    mup = x.invert(coord);
+	console.log("mousemove => " + mdown + "->" + mup);		
 }
