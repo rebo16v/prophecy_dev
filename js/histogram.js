@@ -294,6 +294,7 @@ function mousemove(e) {
 		const idx1 = sims.findIndex(x => x>Math.min(mdown,value));
 		const idx2 = sims.findIndex(x => x>Math.max(mdown,value));
 		if (idx1>=0 && idx2>=0) {q = Math.round(100 * (Math.abs(idx1-idx2) / sims.length));}
+		else if (idx1>=0) {q = Math.round(100 * (Math.abs(idx1-sims.length) / sims.length));}
 		else {q = 0;}
 		console.log("mousemove => " + mdown + "->" + value);	
 		const begin = x(mdown);
@@ -320,7 +321,8 @@ function mousedown(e) {
 function mouseup(e) {
   const coord = e.x;
   console.log("mouseup => " + coord);
-  if ((coord>margin.left) && (coord<(width-margin.right))) {
+  if ((coord>margin.left) && (coord<(width-margin.right))) 
     mup = x.invert(coord);
-  }
+  else
+	mdown = -1;
 }
