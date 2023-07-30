@@ -71,12 +71,6 @@ function message(e) {
     mean = summa / sims.length;
     repaint();
   } else {
-    console.log("mean => " + pmean(sims));
-    // console.log("median => " + pmedian(sims));
-    console.log("mode => " + pmode(sims));
-    console.log("stdev => " + pstdev(sims));
-    console.log("min = " + Math.min(...sims));
-    console.log("max = " + Math.max(...sims));
     sims = sims.sort();
     let l = sims.length;
     qs = [sims[Math.round(l/4)], sims[Math.round(l/2)], sims[Math.round(3*l/4)]];
@@ -143,6 +137,8 @@ function message(e) {
     svg.on("mouseenter", x => {mouse=true;});
     svg.on("mouseleave", x => {mouse=false;});
     svg.on("mousemove", mousemove);
+	svg.on("mousedown", mousedown);
+	svg.on("mouseup", mouseup);
   }
 }
 
@@ -279,4 +275,14 @@ function mousemove(e) {
     m_text2.attr("visibility", "hidden");
     m_line.attr("visibility", "hidden");
   }
+}
+
+function mousedown(e) {
+  const coord = e.x;
+  console.log("mousedown => " + coord);
+}
+
+function mouseup(e) {
+  const coord = e.x;
+  console.log("mouseup => " + coord);
 }
