@@ -43,7 +43,7 @@ window.addEventListener("load", (e) => {
   mean_line = svg.append("line").attr("stroke", "blue");
   mean_text = svg.append("text").attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue");
   window.addEventListener("message", message, false);
-  window.addEventListener("resize", resize, false);
+  //window.addEventListener("resize", resize, false);
 });
 
 function message(e) {
