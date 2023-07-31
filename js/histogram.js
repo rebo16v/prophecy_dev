@@ -212,15 +212,15 @@ function repaint() {
 
 function resize() {
   console.log("RESIZE => " + mdown + " -> " + mup);
-  width = window.innerWidth - margin.left;
-  height = window.innerHeight - margin.top;
-  svg.attr("width", width).attr("height", height);
-  x.range([margin.left, width - margin.right]);
-  axis[0].attr("transform", `translate(0,${height - margin.bottom})`);
-  axis[0].call(d3.axisBottom(x));
-  y.range([height - margin.bottom, margin.top]);
-  axis[1].attr("transform", `translate(${margin.left},0)`);
-  axis[1].call(d3.axisLeft(y));
+  //width = window.innerWidth - margin.left;
+  //height = window.innerHeight - margin.top;
+  //svg.attr("width", width).attr("height", height);
+  //x.range([margin.left, width - margin.right]);
+  //axis[0].attr("transform", `translate(0,${height - margin.bottom})`);
+  //axis[0].call(d3.axisBottom(x));
+  //y.range([height - margin.bottom, margin.top]);
+  //axis[1].attr("transform", `translate(${margin.left},0)`);
+  //axis[1].call(d3.axisLeft(y));
   svg.selectAll(".grid")
       .data(y.ticks())
       .join(
