@@ -221,7 +221,7 @@ function resize() {
   //y.range([height - margin.bottom, margin.top]);
   //axis[1].attr("transform", `translate(${margin.left},0)`);
   //axis[1].call(d3.axisLeft(y));
-  svg.selectAll(".grid")
+  /* svg.selectAll(".grid")
       .data(y.ticks())
       .join(
           update => update
@@ -231,8 +231,8 @@ function resize() {
                 .attr("y1", x => y(x))
                 .attr("y2", x => y(x)));
   name_text.attr("x", width-margin.right).attr("y", margin.top);
-  iter_text.attr("x", width-margin.right).attr("y", 2*margin.top);
-  if (stats) {
+  iter_text.attr("x", width-margin.right).attr("y", 2*margin.top); */
+  if (false) {
 	avg_text.attr("x", width-margin.right).attr("y", 4*margin.top);
 	stdev_text.attr("x", width-margin.right).attr("y", 4*margin.top+20);
 	median_text.attr("x", width-margin.right).attr("y", 4*margin.top+40);
