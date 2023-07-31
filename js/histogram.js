@@ -102,7 +102,7 @@ function message(e) {
       });
 	  
 	inter_line = svg.append("rect")
-		.style("fill", "red")//.style("fill-opacity", ".2")
+		.style("fill", "red").style("fill-opacity", ".2")
 		.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
 	inter_text = svg.append("text")
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "red")
@@ -159,9 +159,9 @@ function repaint() {
   let bins = d3.histogram()
       .domain(x.domain())
       .thresholds(x.ticks(nbins))
-      (sims);
-  let step = Math.ceil(Math.max.apply(Math, bins.map(b => b.length)) / (max_scale * sims.length));  
+      (sims);  
   if (!stats) {
+	  let step = Math.ceil(Math.max.apply(Math, bins.map(b => b.length)) / (max_scale * sims.length));  
 	  console.log("==========================================")
 	  console.log("max => (" + max_scale + "," + max_step + ")");
 	  console.log("step => "+ step);
@@ -181,11 +181,12 @@ function repaint() {
 		rescale(max_scale, max_step);
 	  }
   }
-  svg.selectAll("rect")
+  svg.selectAll(".bar")
       .data(bins)
       .join(
           enter => enter
               .append("rect")
+			  .attr("class", "bar")
               .attr("x", function(d) {return x(d.x0)})
               .attr("y", function(d) {return y(d.length/sims.length)})
               .attr("width", function(d) {return x(d.x1) - x(d.x0) - 2})
@@ -253,7 +254,7 @@ function resize() {
 		inter_text.attr("x", x(Math.max(mdown,mup))).attr("y", margin.top);		
 		}
   }
-  // repaint();
+  repaint();
 }
 
 function rescale(scale, step) {
