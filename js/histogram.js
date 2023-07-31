@@ -43,7 +43,7 @@ window.addEventListener("load", (e) => {
   mean_line = svg.append("line").attr("stroke", "blue");
   mean_text = svg.append("text").attr("text-anchor", "end").attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue");
   window.addEventListener("message", message, false);
-  //window.addEventListener("resize", resize, false);
+  window.addEventListener("resize", resize, false);
 });
 
 function message(e) {
@@ -245,12 +245,12 @@ function resize() {
         q_texts2[i].attr("x", q-2);
         q_lines[i].attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
-	if (mdown != -1 && mup != -1) {
+	//if (mdown != -1 && mup != -1) {
 		//inter_line
 			//.attr("x", x(Math.min(mdown, mup))).attr("width", Math.abs(x(mdown)-x(mup)))
 			//.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
-		inter_text.attr("x", x(Math.max(mdown,mup))).attr("y", margin.top);		
-		}
+	//	inter_text.attr("x", x(Math.max(mdown,mup))).attr("y", margin.top);		
+	//	}
   }
   repaint();
 }
