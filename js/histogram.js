@@ -211,7 +211,7 @@ function repaint() {
 }
 
 function resize() {
-  console.log("RESIZE");
+  console.log("RESIZE => " + mdown + " -> " + mup);
   width = window.innerWidth - margin.left;
   height = window.innerHeight - margin.top;
   svg.attr("width", width).attr("height", height);
