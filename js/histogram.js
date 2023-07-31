@@ -212,16 +212,16 @@ function repaint() {
 
 function resize() {
   console.log("RESIZE => " + mdown + " -> " + mup);
-  //width = window.innerWidth - margin.left;
-  //height = window.innerHeight - margin.top;
-  //svg.attr("width", width).attr("height", height);
-  //x.range([margin.left, width - margin.right]);
-  //axis[0].attr("transform", `translate(0,${height - margin.bottom})`);
-  //axis[0].call(d3.axisBottom(x));
-  //y.range([height - margin.bottom, margin.top]);
-  //axis[1].attr("transform", `translate(${margin.left},0)`);
-  //axis[1].call(d3.axisLeft(y));
-  /* svg.selectAll(".grid")
+  width = window.innerWidth - margin.left;
+  height = window.innerHeight - margin.top;
+  svg.attr("width", width).attr("height", height);
+  x.range([margin.left, width - margin.right]);
+  axis[0].attr("transform", `translate(0,${height - margin.bottom})`);
+  axis[0].call(d3.axisBottom(x));
+  y.range([height - margin.bottom, margin.top]);
+  axis[1].attr("transform", `translate(${margin.left},0)`);
+  axis[1].call(d3.axisLeft(y));
+  svg.selectAll(".grid")
       .data(y.ticks())
       .join(
           update => update
@@ -231,8 +231,8 @@ function resize() {
                 .attr("y1", x => y(x))
                 .attr("y2", x => y(x)));
   name_text.attr("x", width-margin.right).attr("y", margin.top);
-  iter_text.attr("x", width-margin.right).attr("y", 2*margin.top); */
-  if (false) {
+  iter_text.attr("x", width-margin.right).attr("y", 2*margin.top);
+  if (stats) {
 	avg_text.attr("x", width-margin.right).attr("y", 4*margin.top);
 	stdev_text.attr("x", width-margin.right).attr("y", 4*margin.top+20);
 	median_text.attr("x", width-margin.right).attr("y", 4*margin.top+40);
@@ -246,16 +246,14 @@ function resize() {
         q_texts2[i].attr("x", q-2);
         q_lines[i].attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
-	  /*
 	if (mdown != -1 && mup != -1) {
 		inter_line
 			.attr("x", x(Math.min(mdown, mup))).attr("width", Math.abs(x(mdown)-x(mup)))
 			.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
 		inter_text.attr("x", x(Math.max(mdown,mup))).attr("y", margin.top);		
 		}
-		*/
   }
-  //repaint();
+  // repaint();
 }
 
 function rescale(scale, step) {
