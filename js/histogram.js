@@ -133,7 +133,7 @@ function message(e) {
 	max_text = svg.append("text")
 		.text("max = " + Math.max(...sims).toFixed(2))
 		.attr("font-family", "Arial").attr("font-size", "smaller").attr("fill", "blue")
-		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+1000);
+		.attr("text-anchor", "end").attr("x", width-margin.right).attr("y", 4*margin.top+100);
 		
 		
     m_text = svg.append("text")
