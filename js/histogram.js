@@ -305,7 +305,8 @@ function mousemove(e) {
 		console.log("mousemove => " + mdown + "->" + value);	
 		const begin = x(mdown);
 		inter_line.attr("x", Math.min(begin, coord)).attr("width", Math.abs(coord-begin));		
-		inter_text.text("Qinterval=" + q + "%").attr("x", Math.max(begin,coord));		
+		inter_text.text("Qinterval=" + q + "%").attr("x", Math.max(begin,coord));	
+		mup = value;
 	}
   } else {
     m_text.attr("visibility", "hidden");
