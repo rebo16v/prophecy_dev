@@ -44,3 +44,10 @@ button:disabled {
   cursor: pointer;
   margin-top:5px
 }
+
+svg text{
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
