@@ -255,7 +255,7 @@ function resize() {
 		}
 		*/
   }
-  repaint();
+  //repaint();
 }
 
 function rescale(scale, step) {
