@@ -160,11 +160,11 @@ function repaint() {
       .domain(x.domain())
       .thresholds(x.ticks(nbins))
       (sims);
-  let step = Math.ceil(Math.max.apply(Math, bins.map(b => b.length)) / (max_scale * sims.length));
-  console.log("==========================================")
-  console.log("max => (" + max_scale + "," + max_step + ")");
-  console.log("step => "+ step);
+  let step = Math.ceil(Math.max.apply(Math, bins.map(b => b.length)) / (max_scale * sims.length));  
   if (!stats) {
+	  console.log("==========================================")
+	  console.log("max => (" + max_scale + "," + max_step + ")");
+	  console.log("step => "+ step);
 	  if ((step == 1) || (step < max_step)) {
 		console.log("prob menor");
 		if (step <=  1) {
@@ -211,6 +211,7 @@ function repaint() {
 }
 
 function resize() {
+  console.log("RESIZE");
   width = window.innerWidth - margin.left;
   height = window.innerHeight - margin.top;
   svg.attr("width", width).attr("height", height);
@@ -245,12 +246,14 @@ function resize() {
         q_texts2[i].attr("x", q-2);
         q_lines[i].attr("x1", q).attr("x2", q).attr("y1", height-margin.bottom).attr("y2", margin.top);
       });
-	//if (mdown != -1 && mup != -1) {
-		//inter_line
-			//.attr("x", x(Math.min(mdown, mup))).attr("width", Math.abs(x(mdown)-x(mup)))
-			//.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
-	//	inter_text.attr("x", x(Math.max(mdown,mup))).attr("y", margin.top);		
-	//	}
+	  /*
+	if (mdown != -1 && mup != -1) {
+		inter_line
+			.attr("x", x(Math.min(mdown, mup))).attr("width", Math.abs(x(mdown)-x(mup)))
+			.attr("y", margin.top).attr("height", height-margin.top-margin.bottom);
+		inter_text.attr("x", x(Math.max(mdown,mup))).attr("y", margin.top);		
+		}
+		*/
   }
   repaint();
 }
